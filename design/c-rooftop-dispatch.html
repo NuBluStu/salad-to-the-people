@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salad to the People — a rooftop proposal, Upper West Side</title>
+<meta name="description" content="Danny Dalton is looking for one Upper West Side rooftop to grow microgreens on this summer. Here is exactly what that would look like on your building.">
+<meta name="color-scheme" content="light dark">
+
+<!--
+  DIRECTION C — ROOFTOP DISPATCH / "TEN BY TWENTY"
+  Mockup. Single self-contained file. No build step, no framework, no external JS.
+
+  ============================================================================
+  PHOTOGRAPHY: EVERY IMAGE ON THIS PAGE IS A LICENSED REFERENCE PHOTOGRAPH.
+  None of them show Danny's roof, Danny's trays, or Danny's operation, and no
+  caption claims otherwise. Every figure carries a mono plate whose first token
+  is REFERENCE. When phase-one photographs exist — trays on his counter, the
+  four-frame day sequence, hands and scissors, a real roof — they replace these
+  one for one and the plate token changes to "W 85TH ST". The specific swaps
+  are flagged in comments at each figure below.
+  Sources: Unsplash License / Pexels License, both free for commercial use with
+  no attribution required. Before launch these should be downloaded, committed
+  to /assets/img/, and recorded in /assets/img/CREDITS.md.
+  ============================================================================
+  PLACEHOLDERS: [PHONE] and [EMAIL] are the only bracketed strings on the page.
+  They are styled as visible placeholders on purpose and are wired as tel: and
+  mailto: links so the markup is correct the moment the real values land.
+  ============================================================================
+-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Libre+Caslon+Display&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+
+<style>
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+:root{
+  --newsprint:#F7F3E9;   /* page ground — warm cream, laid-paper stock. 16.8:1 under --press */
+  --press:#14130F;       /* headlines, body, major rules — warm near-black, brown cast not blue */
+  --graphite:#6B6555;    /* captions, credits, secondary — warm taupe. 5.2:1 on ground */
+  --hairline:#DFD8C6;    /* minor rules, dividers. 1.28:1 — visible, never a stripe */
+  --green:#2F6B41;       /* cut green — section rules, figure numbers, links. 5.7:1 on ground */
+  --halftone:#E9DFC4;    /* the one fill tone. 1.20:1 — survives a dim laptop screen */
+
+  /* the module: the short side of a 10 x 20 tray */
+  --tray: clamp(148px, 14vw, 208px);
+
+  --gap: clamp(18px, 2.4vw, 34px);
+  --pad: clamp(20px, 5vw, 56px);
+  --measure: 64ch;
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --display: "Libre Caslon Display", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --newsprint:#16150F;
+    --press:#EDE8DA;
+    --graphite:#9C9686;
+    --hairline:#33322A;
+    --green:#63A776;
+    --halftone:#1E1D16;
+  }
+}
+
+/* ==========================================================================
+   2. RESET / BASE
+   ========================================================================== */
+*,*::before,*::after{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100% }
+body{
+  margin:0;
+  background:var(--newsprint);
+  color:var(--press);
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.66;
+  letter-spacing:.003em;
+  font-synthesis-weight:none;
+  text-rendering:optimizeLegibility;
+  padding-bottom:74px; /* room for the fixed mobile call bar */
+}
+@media (min-width:900px){ body{ padding-bottom:0 } }
+@media (max-width:900px){ body{ font-size:17.5px; line-height:1.68 } }
+
+img{ max-width:100%; display:block }
+button{ font:inherit; color:inherit }
+
+h1,h2,h3{ margin:0; font-weight:400 }
+p{ margin:0 }
+
+a{
+  color:inherit;
+  text-decoration:underline;
+  text-decoration-color:var(--green);
+  text-decoration-thickness:1px;
+  text-underline-offset:.18em;
+  transition:text-decoration-thickness .12s linear;
+}
+a:hover{ text-decoration-thickness:2px }
+:focus-visible{ outline:2px solid var(--green); outline-offset:3px }
+
+@media (prefers-reduced-motion:reduce){
+  *{ transition:none !important; animation:none !important; scroll-behavior:auto !important }
+}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:200;
+  background:var(--press); color:var(--newsprint);
+  padding:12px 18px; font-family:var(--mono); font-size:13px;
+}
+.skip:focus{ left:0 }
+
+/* ==========================================================================
+   3. GRID / MEASURE
+   ========================================================================== */
+.wrap{ max-width:1220px; margin-inline:auto; padding-inline:var(--pad) }
+.grid{ display:grid; grid-template-columns:1fr; gap:var(--gap) }
+@media (min-width:900px){
+  .grid{ grid-template-columns:repeat(12,1fr) }
+  .c1-6{ grid-column:1/7 }   .c1-7{ grid-column:1/8 }   .c1-8{ grid-column:1/9 }
+  .c1-9{ grid-column:1/10 }  .c1-10{ grid-column:1/11 }
+  .c2-6{ grid-column:2/7 }   .c3-9{ grid-column:3/10 }  .c3-11{ grid-column:3/12 }
+  .c7-12{ grid-column:7/13 } .c8-12{ grid-column:8/13 } .c9-12{ grid-column:9/13 }
+  .c1-12{ grid-column:1/13 } .c5-12{ grid-column:5/13 } .c6-12{ grid-column:6/13 }
+}
+
+.prose{ max-width:var(--measure) }
+/* book setting: paragraphs after the first are indented, no blank-line gap */
+.prose p + p{ text-indent:1.4em }
+/* skimmable setting: used in the Q&A and the spec block */
+.skim p + p{ text-indent:0; margin-top:.85em }
+
+/* ==========================================================================
+   4. TYPE
+   ========================================================================== */
+.kicker,
+.label,
+.plate,
+.stamp{
+  font-family:var(--mono);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:11.5px;
+  line-height:1.5;
+}
+.kicker{ color:var(--green) }
+.label{ color:var(--graphite) }
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(2.5rem,6.8vw,5.5rem);
+  line-height:1.0;
+  letter-spacing:-.02em;
+}
+.sechead{
+  font-family:var(--display);
+  font-size:clamp(1.9rem,4vw,3rem);
+  line-height:1.06;
+  letter-spacing:-.015em;
+}
+.sechead + .secrule{
+  height:0; border:0; border-top:2px solid var(--green);
+  margin:.6em 0 0; max-width:96px;
+}
+.deck{
+  font-family:var(--serif);
+  font-size:clamp(1.15rem,1.9vw,1.5rem);
+  line-height:1.45;
+}
+.standfirst{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--graphite); line-height:1.7;
+  max-width:70ch;
+}
+.pull{
+  font-family:var(--serif); font-style:italic; font-size:1.22rem; line-height:1.5;
+  border-left:2px solid var(--green); padding-left:1.1em; max-width:52ch;
+}
+.big-serif{ font-family:var(--display); font-size:clamp(1.5rem,2.6vw,2rem); line-height:1.2 }
+.endmark::after{
+  content:""; display:inline-block; width:.52em; height:.52em;
+  background:var(--green); margin-left:.5em; vertical-align:.02em;
+}
+
+/* the two bracketed placeholders — deliberately conspicuous */
+.ph{
+  font-family:var(--mono); font-weight:500; font-size:.92em;
+  color:var(--green);
+  border:1px dashed var(--green);
+  padding:.05em .35em;
+  white-space:nowrap;
+  text-decoration:none;
+}
+a.ph:hover{ background:var(--halftone) }
+
+hr.rule{ height:0; border:0; border-top:1px solid var(--press); margin:0 }
+hr.hair{ height:0; border:0; border-top:1px solid var(--hairline); margin:0 }
+
+/* ==========================================================================
+   5. MASTHEAD + PERSISTENT CALL AFFORDANCES
+   ========================================================================== */
+.masthead{
+  background:var(--newsprint);
+  position:static;
+  z-index:80;
+}
+@media (min-width:900px){ .masthead{ position:sticky; top:0 } }
+
+.masthead-in{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 22px;
+  padding-block:11px;
+  min-height:48px;
+}
+.wordmark{
+  font-family:var(--mono); font-weight:500; text-transform:uppercase;
+  letter-spacing:.19em; font-size:12.5px; white-space:nowrap;
+}
+.masthead .dateline{
+  font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--graphite);
+}
+.masthead .call{
+  margin-left:auto; font-family:var(--mono); font-weight:500;
+  font-size:12.5px; letter-spacing:.1em; text-transform:uppercase;
+  white-space:nowrap;
+}
+@media (max-width:640px){
+  .masthead .dateline{ display:none }
+  .masthead .call{ margin-left:auto }
+}
+/* newspaper double rule: 3px ink, 4px gap, 1px ink.
+   height must be 8px because box-sizing is border-box — at 4px the borders
+   meet and the rule collapses into one solid band. */
+.doublerule{
+  border-top:3px solid var(--press);
+  border-bottom:1px solid var(--press);
+  height:8px; background:transparent;
+}
+
+/* mobile fixed call bar — live from scroll position zero */
+.callbar{
+  position:fixed; inset:auto 0 0 0; z-index:90;
+  background:var(--newsprint);
+  border-top:1px solid var(--press);
+  min-height:56px;
+  display:flex; align-items:center; justify-content:center; gap:.7em;
+  padding:8px var(--pad);
+  text-align:center;
+}
+.callbar a{
+  font-family:var(--mono); font-weight:500; font-size:16px; letter-spacing:.04em;
+  display:flex; align-items:center; gap:.6em; min-height:44px;
+}
+.callbar .who{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--graphite);
+}
+@media (min-width:900px){ .callbar{ display:none } }
+
+/* the recurring ruled ASK band */
+.askband{
+  border-top:1px solid var(--press);
+  border-bottom:1px solid var(--press);
+  margin-block:clamp(48px,7vw,96px);
+}
+.askband-in{
+  display:grid; grid-template-columns:1fr; gap:10px;
+  padding-block:20px;
+}
+@media (min-width:820px){
+  .askband-in{ grid-template-columns:9ch minmax(0,1fr) auto; gap:var(--gap); align-items:baseline }
+}
+.askband .tag{
+  font-family:var(--mono); font-weight:500; font-size:11.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--green);
+}
+.askband .line{ font-family:var(--serif); font-size:1.02rem; line-height:1.5; max-width:56ch }
+.askband .num{
+  font-family:var(--mono); font-weight:500; font-size:clamp(15px,2.2vw,19px);
+  letter-spacing:.02em; white-space:nowrap;
+}
+.askband--inline{ margin-block:44px }
+
+/* ==========================================================================
+   6. SECTIONS
+   ========================================================================== */
+section{ scroll-margin-top:70px }
+.sec{ padding-block:clamp(56px,8vw,120px) }
+.sec--tight{ padding-block:clamp(40px,5vw,72px) }
+
+.opening{ padding-top:clamp(38px,6vw,84px); padding-bottom:clamp(28px,4vw,52px) }
+.byline{
+  display:flex; flex-wrap:wrap; align-items:center; gap:12px 26px;
+  font-family:var(--mono); font-size:12px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--graphite);
+  padding-top:20px; margin-top:26px; border-top:1px solid var(--press);
+}
+.byline .cta{ color:var(--press); font-weight:500; letter-spacing:.06em }
+
+/* ==========================================================================
+   7. FIGURES
+   ========================================================================== */
+figure{ margin:0 }
+.photo{
+  background:var(--halftone);
+  overflow:hidden;
+  position:relative;
+}
+.photo img{
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(.96) contrast(1.04);
+}
+.r-219{ aspect-ratio:21/9 }
+.r-41 { aspect-ratio:4/1 }
+.r-169{ aspect-ratio:16/9 }
+.r-32 { aspect-ratio:3/2 }
+.r-11 { aspect-ratio:1/1 }
+.r-45 { aspect-ratio:4/5 }
+.r-34 { aspect-ratio:3/4 }
+@media (max-width:900px){
+  .r-41{ aspect-ratio:2/1 }
+  .r-219{ aspect-ratio:16/9 }
+}
+
+figcaption{ padding-top:11px; max-width:46ch }
+.plate{
+  color:var(--green);
+  display:block;
+  padding-bottom:3px;
+}
+.plate .ref{ color:var(--graphite) }
+.cap{
+  font-family:var(--serif); font-style:italic; font-size:14px; line-height:1.5;
+  color:var(--graphite);
+}
+@media (max-width:900px){ .cap{ font-size:14.5px } }
+
+/* full-bleed figures live outside .wrap */
+.bleed figcaption{ max-width:none }
+.bleed .capwrap{ max-width:1220px; margin-inline:auto; padding-inline:var(--pad) }
+.bleed .cap{ max-width:56ch }
+
+/* staggered baselines on desktop only */
+@media (min-width:900px){
+  .stagger{ margin-top:88px }
+  .hang-right{ margin-right:calc(-1 * var(--pad)) }
+}
+
+/* ==========================================================================
+   8. THE THREE WAYS  /  THE SPEC BLOCK  /  TIMELINE  — ruled, never carded
+   ========================================================================== */
+.ruled{ border-top:1px solid var(--press) }
+.ruled > .row{
+  border-bottom:1px solid var(--hairline);
+  display:grid; grid-template-columns:1fr; gap:6px;
+  padding-block:22px;
+}
+@media (min-width:820px){
+  .ruled > .row{ grid-template-columns:minmax(0,3.4fr) minmax(0,8fr); gap:var(--gap) }
+}
+.ruled .key{
+  font-family:var(--mono); font-weight:500; font-size:12.5px;
+  letter-spacing:.11em; text-transform:uppercase;
+}
+.ruled .key .sub{
+  display:block; font-family:var(--serif); font-style:italic; font-size:14px;
+  letter-spacing:0; text-transform:none; color:var(--graphite); margin-top:5px;
+}
+.ruled .val{ font-size:1rem; line-height:1.6; max-width:62ch }
+.ruled .val strong{ font-weight:500 }
+.deal .key{ font-size:13.5px; color:var(--green) }
+
+.timeline .row{ padding-block:26px }
+.timeline .key{ color:var(--green) }
+
+/* the halftone honesty band */
+.honesty{
+  background:var(--halftone);
+  border-left:2px solid var(--green);
+  padding:clamp(24px,4vw,40px);
+}
+.honesty h2{ margin-bottom:.5em }
+
+/* ==========================================================================
+   9. THE QUESTIONS — interview setting
+   ========================================================================== */
+.qa{ border-top:1px solid var(--press) }
+.qa-item{
+  border-bottom:1px solid var(--hairline);
+  padding-block:clamp(26px,3.4vw,40px);
+  display:grid; grid-template-columns:1fr; gap:14px;
+}
+@media (min-width:900px){
+  .qa-item{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:var(--gap) }
+}
+.qa-q{
+  position:relative; padding-left:3.1em;
+  font-family:var(--serif); font-weight:500; font-size:1.06rem; line-height:1.35;
+}
+.qa-q .mk{
+  position:absolute; left:0; top:.16em;
+  font-family:var(--mono); font-weight:500; font-size:12.5px;
+  letter-spacing:.06em; color:var(--green);
+}
+.qa-a{ font-size:1rem; line-height:1.62; max-width:64ch }
+.qa-a p + p{ margin-top:.8em }
+
+/* ==========================================================================
+   10. DRAWINGS
+   ========================================================================== */
+.svgwrap{
+  background:var(--halftone);
+  border:1px solid var(--hairline);
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+/* Drawing colours live in CSS, never in presentation attributes: var() inside
+   a presentation attribute is not supported across all engines, and a drawing
+   that silently renders as nothing is worse than no drawing. */
+.dwg{ font-family:var(--mono) }
+.dwg .ink   { stroke:var(--press);   fill:none }
+.dwg .ink-f { fill:var(--press);     stroke:none }
+.dwg .gry   { stroke:var(--graphite);fill:none }
+.dwg .t-ink { fill:var(--press);     stroke:none }
+.dwg .t-gry { fill:var(--graphite);  stroke:none }
+.dwg .t-grn { fill:var(--green);     stroke:none }
+.dwg .disc  { fill:var(--newsprint); stroke:var(--green); stroke-width:1.5 }
+.dwg .zone  { fill:url(#cropHatch);  stroke:var(--green); stroke-width:2 }
+.dwg .mech  { fill:url(#mechHatch);  stroke:var(--press); stroke-width:1.6 }
+.dwg .canopy{ fill:url(#canopy);     stroke:var(--green); stroke-width:1.6 }
+.dwg .lead  { stroke:var(--green);   fill:none; stroke-width:1.2; stroke-linecap:round }
+.dwg .hatch-g{ stroke:var(--green) }
+.dwg .hatch-k{ stroke:var(--graphite) }
+.dwg .dot-g { fill:var(--green); stroke:none }
+.svgwrap svg{ display:block; width:100%; height:auto; min-width:660px }
+.scrollhint{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--graphite); padding-top:9px;
+}
+@media (min-width:820px){ .scrollhint{ display:none } }
+
+.keys{ list-style:none; margin:26px 0 0; padding:0; counter-reset:k }
+.keys li{
+  position:relative; padding-left:3.1em; margin-bottom:14px;
+  font-family:"Newsreader",Georgia,serif; font-size:15.5px; line-height:1.52;
+  max-width:44ch;
+}
+.keys li::before{
+  counter-increment:k; content:counter(k,decimal-leading-zero);
+  position:absolute; left:0; top:.06em;
+  width:2.1em; height:2.1em; border:1px solid var(--green); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:11px; font-weight:500; color:var(--green);
+}
+@media (min-width:900px){ .keys{ columns:2; column-gap:var(--gap) } .keys li{ break-inside:avoid } }
+
+/* the mono is the page's "this is a record" signal; it never sets prose */
+.titleblock{
+  font-family:var(--serif); font-style:italic; font-size:15px; line-height:1.55;
+  color:var(--graphite); max-width:56ch;
+  border-top:1px solid var(--hairline); margin-top:20px; padding-top:12px;
+}
+
+/* ==========================================================================
+   11. THE PLATE BAND (replaces the duotone) — half ink plate, half photograph
+   ========================================================================== */
+.plateband{ display:grid; grid-template-columns:1fr }
+@media (min-width:820px){ .plateband{ grid-template-columns:1fr 1fr } }
+.plateband .ink{
+  background:var(--press); color:var(--newsprint);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(34px,6vw,80px);
+  min-height:clamp(260px,34vw,460px);
+}
+@media (prefers-color-scheme:dark){
+  .plateband .ink{ background:var(--halftone); color:var(--press) }
+}
+.plateband .ink p{
+  font-family:var(--display); font-size:clamp(1.5rem,3vw,2.5rem);
+  line-height:1.14; letter-spacing:-.01em; max-width:22ch;
+}
+.plateband .ink .attrib{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; opacity:.72; margin-top:22px;
+}
+.plateband .photo{ min-height:clamp(260px,34vw,460px) }
+@media (max-width:819px){ .plateband .photo{ aspect-ratio:3/2; min-height:0 } }
+
+/* ==========================================================================
+   12. THE CYCLE STRIP — four frames, one tray wide each
+   ========================================================================== */
+.cycle{
+  border-top:1px solid var(--press); border-bottom:1px solid var(--press);
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0;
+}
+@media (min-width:760px){ .cycle{ grid-template-columns:repeat(4,minmax(0,1fr)) } }
+.cycle .frame{ padding:18px; border-right:1px solid var(--hairline) }
+.cycle .frame:nth-child(2n){ border-right:0 }
+@media (min-width:760px){
+  .cycle .frame{ border-right:1px solid var(--hairline) }
+  .cycle .frame:nth-child(2n){ border-right:1px solid var(--hairline) }
+  .cycle .frame:last-child{ border-right:0 }
+}
+@media (max-width:759px){
+  .cycle .frame:nth-child(-n+2){ border-bottom:1px solid var(--hairline) }
+}
+.cycle .stamp{ color:var(--green); padding-bottom:10px }
+.cycle .photo{ aspect-ratio:4/5 }
+.cycle .cap{ font-size:13px; padding-top:9px; max-width:none }
+.blankframe{
+  aspect-ratio:4/5; background:var(--halftone);
+  border:1px dashed var(--green);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:14px;
+}
+.blankframe span{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--green); line-height:1.8;
+}
+
+/* ==========================================================================
+   13. THE MATH
+   ========================================================================== */
+.figures{ display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid var(--press) }
+@media (min-width:820px){ .figures{ grid-template-columns:1fr 1fr } }
+.figures .fig{ padding-block:30px; border-bottom:1px solid var(--hairline) }
+@media (min-width:820px){
+  .figures .fig:first-child{ padding-right:var(--gap); border-right:1px solid var(--hairline) }
+  .figures .fig:last-child{ padding-left:var(--gap) }
+}
+.figures .n{
+  font-family:var(--display); font-size:clamp(2.6rem,7vw,4.6rem);
+  line-height:1; letter-spacing:-.02em; display:block;
+}
+.figures .u{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--green); display:block; margin-top:12px;
+}
+.figures p{ margin-top:14px; font-size:1rem; line-height:1.6; max-width:44ch }
+
+/* ==========================================================================
+   14. THE ASK — reversed block
+   ========================================================================== */
+.reversed{ background:var(--press); color:var(--newsprint) }
+@media (prefers-color-scheme:dark){
+  .reversed{ background:var(--halftone); color:var(--press) }
+}
+.reversed .sechead,
+.reversed h2{ color:inherit }
+.reversed a{ color:inherit; text-decoration-color:var(--green); text-decoration-thickness:2px }
+.reversed .ph{ color:var(--green); border-color:var(--green) }
+.contact-lines{
+  font-family:var(--mono); font-weight:500;
+  font-size:clamp(1.05rem,2.4vw,1.4rem); line-height:2.1; letter-spacing:.01em;
+  margin-top:34px;
+}
+.contact-lines .k{
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--green); display:inline-block; min-width:9ch;
+}
+.reversed .small{
+  font-family:var(--serif); font-style:italic; font-size:15px;
+  opacity:.72; margin-top:26px; max-width:52ch;
+}
+
+/* ==========================================================================
+   15. COLOPHON
+   ========================================================================== */
+.colophon{ border-top:1px solid var(--press); padding-block:clamp(44px,6vw,80px) }
+.colophon .line{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.1em;
+  line-height:1.9; color:var(--graphite); text-transform:uppercase;
+}
+.colophon .note{
+  font-family:var(--serif); font-style:italic; font-size:15px; line-height:1.6;
+  color:var(--graphite); max-width:60ch; margin-block:20px;
+}
+.printlink{
+  background:none; border:0; padding:0; margin-top:22px; cursor:pointer;
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--press);
+  text-decoration:underline; text-decoration-color:var(--green);
+  text-underline-offset:.2em; min-height:44px;
+}
+
+/* ==========================================================================
+   16. PRINT — a usable board handout
+   ========================================================================== */
+@media print{
+  @page{ margin:.75in }
+  :root{
+    --newsprint:#fff; --press:#000; --graphite:#444;
+    --hairline:#bbb; --green:#000; --halftone:#fff;
+  }
+  body{ background:#fff; color:#000; font-size:10.5pt; line-height:1.45; padding-bottom:0 }
+  .callbar, .printlink, .scrollhint, .skip{ display:none !important }
+  .masthead{ position:static }
+  .bleed, .plateband, .photo, .cycle .photo, .blankframe{ display:none !important }
+  figure.photofig{ display:none !important }
+  .svgwrap{ overflow:visible; border:1px solid #999; background:#fff; break-inside:avoid }
+  .svgwrap svg{ min-width:0 }
+  .sec{ padding-block:18pt }
+  .askband{ margin-block:14pt }
+  .qa-item, .ruled .row, .keys li{ break-inside:avoid }
+  .sechead{ break-after:avoid }
+  .reversed{ background:#fff !important; color:#000 !important; border:1px solid #000 }
+  .plateband .ink{ background:#fff !important; color:#000 !important }
+  .colophon::after{
+    display:block; margin-top:14pt;
+    font-family:var(--mono); font-size:8pt; letter-spacing:.1em; text-transform:uppercase;
+    content:"Salad to the People — rooftop proposal. Danny Dalton, W 85th Street, New York. Printed from the project page.";
+  }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to the proposal</a>
+
+<!-- ======================================================================
+     MASTHEAD — sticky on desktop, static on mobile. Carries the number.
+     ====================================================================== -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-in">
+      <span class="wordmark">Salad to the People</span>
+      <span class="dateline">New York, N.Y. &middot; Phase One &middot; Summer 2026</span>
+      <span class="call">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+  <div class="doublerule" role="presentation"></div>
+</header>
+
+<main id="main">
+<article>
+
+<!-- ======================================================================
+     OPENING — type first, photograph second. On mobile and on desktop.
+     ====================================================================== -->
+<section class="wrap opening" aria-labelledby="hl">
+  <div class="grid">
+    <div class="c1-9">
+      <p class="kicker">A rooftop proposal — Upper West Side</p>
+      <!-- composed rag: a forced break after the first sentence, and a bound
+           "of one." so the headline never ends on a one-word orphan line -->
+      <h1 id="hl" style="margin-top:.28em">Manhattan has thousands of empty rooftops.<span class="lb"></span> I&rsquo;d like to farm a corner of&nbsp;one.</h1>
+    </div>
+    <div class="c1-7">
+      <p class="deck" style="margin-top:.3em">
+        One roof, one corner, one summer — about 400 square feet of trays on folding tables,
+        nothing drilled or bolted to anything, and it comes down in a day. I&rsquo;m Danny Dalton.
+        I live on W 85th Street, and I want to grow clean organic greens up there and sell them
+        to the people living underneath for less than the store charges.
+      </p>
+      <p class="cap" style="max-width:58ch; margin-top:1.1em">
+        Phase one is underway. I&rsquo;m not asking for an investment, a construction project, or a
+        change to your building — I&rsquo;m asking for roof space and a conversation.
+      </p>
+      <div class="byline">
+        <span>By Danny Dalton &middot; West 85th Street, Manhattan &middot; 2 August 2026</span>
+        <span class="cta">Call or text — <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG. 01 — HERO.
+     REPLACE WITH DANNY'S OWN: a West Side roofline in late-afternoon light,
+     parapet in the foreground, water tower, empty tar. The point of the opening
+     image is emptiness. Plate token then changes REFERENCE -> W 85TH ST. -->
+<figure class="bleed photofig">
+  <div class="photo r-219">
+    <img src="https://images.unsplash.com/photo-1483090858014-15e35bb60ea5?w=2000&amp;h=857&amp;q=80&amp;fm=jpg&amp;fit=crop"
+         srcset="https://images.unsplash.com/photo-1483090858014-15e35bb60ea5?w=1000&amp;h=429&amp;q=80&amp;fm=jpg&amp;fit=crop 1000w,
+                 https://images.unsplash.com/photo-1483090858014-15e35bb60ea5?w=1600&amp;h=686&amp;q=80&amp;fm=jpg&amp;fit=crop 1600w,
+                 https://images.unsplash.com/photo-1483090858014-15e35bb60ea5?w=2000&amp;h=857&amp;q=80&amp;fm=jpg&amp;fit=crop 2000w"
+         sizes="100vw"
+         width="2000" height="857" fetchpriority="high" decoding="async"
+         alt="A dense field of Manhattan rooftops: flat tar roofs, stair bulkheads and wooden water towers under a heavy sky.">
+  </div>
+  <figcaption class="capwrap">
+    <span class="plate">FIG. 01 &middot; <span class="ref">Reference photograph</span></span>
+    <p class="cap">Manhattan rooftops — tar, bulkheads and wooden water towers. New York, N.Y.
+      This is not my roof. I don&rsquo;t have one yet, which is the entire reason for this page.</p>
+  </figcaption>
+</figure>
+
+<!-- ======================================================================
+     THE THREE WAYS — the deal, on the second screen.
+     ====================================================================== -->
+<section class="wrap sec" id="deal" aria-labelledby="deal-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="deal-h">Pick whichever is easiest to say yes to.</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.4em">
+        I don&rsquo;t expect free access to your roof. Space in Manhattan is worth something, and
+        I&rsquo;d rather start this by saying that out loud. These aren&rsquo;t a menu to choose
+        from — tell me which direction makes sense for your building and we&rsquo;ll work out
+        the specifics.
+      </p>
+    </div>
+  </div>
+
+  <div class="ruled deal" style="margin-top:clamp(30px,4vw,54px)">
+    <div class="row">
+      <div class="key">A &middot; Monthly rent</div>
+      <div class="val">
+        A flat monthly payment for the season, agreed before a single tray goes up. Predictable,
+        and it doesn&rsquo;t depend on whether I succeed. Think a few hundred dollars a month, not
+        a few thousand — this is a folding table&rsquo;s worth of space. I&rsquo;ll bring a specific
+        number to the call and I expect to be told if it&rsquo;s wrong.
+      </div>
+    </div>
+    <div class="row">
+      <div class="key">B &middot; A share of what I sell</div>
+      <div class="val">
+        A percentage of revenue from everything grown on your roof, on a schedule we agree, with
+        the numbers open to you. Costs the building nothing if I&rsquo;m wrong. I&rsquo;d only
+        propose this to a building that finds the idea genuinely interesting, because it&rsquo;s
+        the version where you take a little of the risk with me.
+      </div>
+    </div>
+    <div class="row">
+      <div class="key">C &middot; A standing discount for your residents</div>
+      <div class="val">
+        Every household at the address buys at a permanent discount off what I charge everyone
+        else, or gets a set amount free each harvest. No money moves between me and the building —
+        the value goes straight to the people living in it. For a board that has to explain a
+        decision to shareholders, this is usually the easiest one to explain.
+      </div>
+    </div>
+    <div class="row">
+      <div class="key">If you have no preference</div>
+      <div class="val">
+        Modest monthly rent plus the resident discount. Certain income for the building, something
+        residents can actually see, and simple enough to write down while we find out whether this
+        works at all.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(26px,3vw,40px)">
+    <div class="c1-8">
+      <p class="pull">
+        Whatever we agree on is in writing, it&rsquo;s one season to start, and either of us can
+        end it with 30 days&rsquo; notice. I&rsquo;d rather have a short agreement you&rsquo;re
+        comfortable with than a long one you regret.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE ASK BAND #1 -->
+<div class="askband">
+  <div class="wrap">
+    <div class="askband-in">
+      <span class="tag">The ask</span>
+      <span class="line">One roof on the Upper West Side, about 400 square feet in a corner, for one
+        season. The first commitment you make is a phone call.</span>
+      <span class="num">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     THE ASK, IN PLAIN TERMS — the bounded spec block.
+     ====================================================================== -->
+<section class="wrap sec sec--tight" id="ask" aria-labelledby="ask-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="ask-h">What I&rsquo;m actually asking for</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="standfirst" style="margin-top:1.5em">
+        Bounded on purpose. Every line below is a limit on me, not on you.
+      </p>
+    </div>
+  </div>
+
+  <div class="ruled" style="margin-top:clamp(26px,3.4vw,44px)">
+    <div class="row">
+      <div class="key">Space<span class="sub">About 400 sq ft, in one corner</span></div>
+      <div class="val">Roughly the footprint of a small bedroom, in a spot you&rsquo;d pick rather
+        than one I&rsquo;d pick. If your engineer or your roofer says less, it&rsquo;s less.</div>
+    </div>
+    <div class="row">
+      <div class="key">Term<span class="sub">One growing season</span></div>
+      <div class="val">The rest of this summer and into the fall. Not a lease. Not a renewal you
+        have to remember to cancel.</div>
+    </div>
+    <div class="row">
+      <div class="key">Who says yes<span class="sub">Someone with actual authority</span></div>
+      <div class="val">A managing agent, an owner, or a board member who can champion it. I&rsquo;d
+        rather find that person in week one than spend a month with someone who has to ask.</div>
+    </div>
+    <div class="row">
+      <div class="key">My hours<span class="sub">~20 minutes most mornings, longer on harvest days</span></div>
+      <div class="val">On a fixed schedule you set. Only I go up. No residents, no volunteers, no
+        tours, no events.</div>
+    </div>
+    <div class="row">
+      <div class="key">What comes up<span class="sub">Folding tables, shallow trays, a watering can, jugs of water</span></div>
+      <div class="val">Everything is freestanding and hand-carried. Nothing that runs unattended,
+        nothing that needs an outlet.</div>
+    </div>
+    <div class="row">
+      <div class="key">What I never touch<span class="sub">Your membrane, drains, standpipe, bulkhead, parapet edge</span></div>
+      <div class="val">Nothing is drilled, bolted, glued, or ballasted. Ever.</div>
+    </div>
+    <div class="row">
+      <div class="key">What I&rsquo;m not asking for<span class="sub">Read this one twice</span></div>
+      <div class="val">Money, construction, roof penetrations, permanent structures, changes to your
+        building, or anything that can&rsquo;t be undone in a day.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     EARLY LOOK — two figures, before the long read, because the single
+     biggest objection is imaginary and a photograph answers it faster
+     than a paragraph does.
+     ====================================================================== -->
+<section class="wrap sec sec--tight" aria-labelledby="look-h">
+  <div class="grid">
+    <div class="c1-8">
+      <h2 class="sechead" id="look-h">This is the whole object.</h2>
+      <hr class="secrule">
+      <p class="prose" style="margin-top:1.3em">
+        Most people hear &ldquo;rooftop garden&rdquo; and picture raised beds, soil, hoses and a
+        construction project. It&rsquo;s a tray. It&rsquo;s ten inches by twenty, about an inch
+        deep, and it sits flat on a folding table. Everything else on this page is measured in
+        that one unit.<span class="endmark"></span>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(30px,4vw,52px)">
+    <!-- FIG. 02 — REPLACE WITH DANNY'S OWN overhead tray on his counter. -->
+    <figure class="c1-6 photofig">
+      <div class="photo r-32">
+        <img src="https://images.pexels.com/photos/3296644/pexels-photo-3296644.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="Overhead view of a black growing tray packed edge to edge with dense green pea-shoot microgreens.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 02 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Pea shoots in a standard 10&nbsp;&times;&nbsp;20 tray, seen from overhead.
+          That tray is the unit: ten inches by twenty, 1.4 square feet, about an inch of growing
+          medium. Every photograph on this page is one, two or four trays wide.</p>
+      </figcaption>
+    </figure>
+
+    <!-- FIG. 03 — REPLACE WITH DANNY'S OWN day-8 canopy shot at tray level. -->
+    <figure class="c7-12 photofig stagger">
+      <div class="photo r-32">
+        <img src="https://images.unsplash.com/photo-1647613233075-e0d5546b0f22?w=1600&amp;h=1067&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="Macro photograph of sunflower microgreens filling the frame, thick pale stems under broad green seed leaves.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 03 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Sunflower shoots at cutting size — seven to ten days from seed. Then the same
+          square foot of roof does it again.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================================================================
+     THE QUESTIONS — interview format, above the photo essay, nothing hidden.
+     ====================================================================== -->
+<section class="wrap sec" id="questions" aria-labelledby="q-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="q-h">The questions a building manager should ask</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.3em">
+        You don&rsquo;t know me. You&rsquo;re being asked to let a stranger onto a roof
+        you&rsquo;re responsible for. These are the real questions, including the ones where the
+        honest answer is that I don&rsquo;t know yet. I&rsquo;d rather answer them here than have
+        them end the first phone call. Nothing here is folded away behind a click — you should be
+        able to print this page or forward it to your board with every answer visible.
+      </p>
+    </div>
+  </div>
+
+  <div class="qa" style="margin-top:clamp(30px,4vw,56px)">
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.01</span>Who&rsquo;s liable if something happens up there?</div>
+      <div class="qa-a skim">
+        <p>I am. I&rsquo;ll sign an agreement that says so, including indemnifying the building for
+          anything arising from my work on the roof. I&rsquo;d expect your management company or
+          attorney to have standard language for exactly this, and I&rsquo;m not going to argue
+          with it.</p>
+        <p>If your building requires anyone on the roof to be escorted, or to work only during
+          certain hours, that&rsquo;s fine. I&rsquo;d rather you tell me your rules than have me
+          propose my own.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.02</span>Are you going to damage my roof membrane?</div>
+      <div class="qa-a skim">
+        <p>This is the right question and the one I take most seriously — a membrane repair costs
+          far more than anything I could pay you in rent. Nothing gets bolted, screwed, drilled,
+          anchored, adhered, or ballasted. No penetrations of any kind. Everything is freestanding
+          and movable, and trays sit on pads or a raised surface rather than directly on the
+          membrane, so nothing sits wet against it and nothing scrapes it.</p>
+        <p>Before I bring anything up, I want to walk the roof with you or your super and photograph
+          its condition, so there&rsquo;s a shared record of what it looked like on day one. If your
+          roofer has requirements or your warranty has terms, send them and I&rsquo;ll design around
+          them — or I&rsquo;ll walk away from your roof rather than void a warranty.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.03</span>How much does all this weigh?</div>
+      <div class="qa-a skim">
+        <p>Microgreens are the lightest thing you can farm — shallow trays an inch or two deep, cut
+          at 7 to 10 days, before they ever build the root mass or soil volume a vegetable planter
+          needs. No raised beds, no barrels of standing water, nothing permanent. A watered tray is
+          in the neighborhood of a gallon of milk, and trays lie flat and spread out rather than
+          stacking into towers.</p>
+        <p>Before anything goes up I&rsquo;ll weigh a loaded tray on a scale and give you the total
+          and the per-square-foot figure in writing. What I won&rsquo;t do is tell you it&rsquo;s
+          fine for your specific roof — I don&rsquo;t know your building&rsquo;s structure and
+          I&rsquo;m not an engineer. If you or your board want a structural opinion first,
+          that&rsquo;s the right instinct, and I&rsquo;d rather you have it than skip it.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.04</span>Are you insured?</div>
+      <div class="qa-a skim">
+        <p>Not yet, and I&rsquo;m not going to tell you otherwise. I don&rsquo;t have a policy
+          because I don&rsquo;t have a roof — nobody writes a policy for a site that doesn&rsquo;t
+          exist.</p>
+        <p>Here&rsquo;s the order, and it doesn&rsquo;t move: you tell me you&rsquo;re interested, I
+          bind a general liability policy naming the building, the owner, and the managing agent as
+          additional insureds, I send your management company the certificate, and only then does
+          anything go up. Tell me the limits you require of any vendor and I&rsquo;ll meet them. You
+          should ask me for the certificate rather than take my word for it. No certificate, no
+          roof — I wouldn&rsquo;t want it any other way.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.05</span>What about fire access and egress?</div>
+      <div class="qa-a skim">
+        <p>I stay clear of the bulkhead and the roof hatch, the standpipe, the ladder, any required
+          path across the roof, and the parapet edge. Show me the clearances your building has to
+          keep — or have your super walk them with me — and I&rsquo;ll draw the footprint inside
+          them and send you the drawing before I bring anything up.</p>
+        <p>If keeping those clearances means the usable corner is smaller than I hoped, the corner
+          gets smaller. I&rsquo;m not going to be the reason you get written up.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- THE ASK BAND — inline, halfway through the longest section on the page -->
+  <div class="askband askband--inline">
+    <div class="askband-in">
+      <span class="tag">The ask</span>
+      <span class="line">If you&rsquo;ve read this far you&rsquo;re already doing the diligence.
+        Ten minutes on the phone is the whole first step — there&rsquo;s nothing to sign.</span>
+      <span class="num">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+
+  <div class="qa">
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.06</span>What about water?</div>
+      <div class="qa-a skim">
+        <p>Trays are bottom-watered — the water goes in the tray and stays in the tray. No hoses,
+          no standing water, no runoff onto the deck or into the drains. Microgreens need far less
+          water than a conventional garden because they&rsquo;re harvested before they ever get big.</p>
+        <p>If there&rsquo;s a spigot on the roof or the top landing, I&rsquo;ll use it and pay a
+          flat monthly amount for it or cover a submeter — your call. If there isn&rsquo;t, I carry
+          it up in jugs. That&rsquo;s not a hardship, it&rsquo;s just a few trips.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.07</span>Who gets a key?</div>
+      <div class="qa-a skim">
+        <p>Nobody has to. If you don&rsquo;t give out keys or fobs to vendors, I don&rsquo;t need
+          one — I&rsquo;ll come at hours you approve, buzzed in or escorted for as long as you want
+          that. If you do issue access to vendors, I&rsquo;ll go through whatever your standard
+          process is, sign in, and stay on the roof and the stairs and nowhere else.</p>
+        <p>Realistically it&rsquo;s about twenty minutes in the morning and twenty at night, plus
+          harvest days. If you&rsquo;d rather I only come when someone from the building is on site,
+          I&rsquo;ll work around that.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.08</span>Is this going to be a mess? Rats? Pigeons?</div>
+      <div class="qa-a skim">
+        <p>There&rsquo;s no open soil and no compost pile. Growing medium comes up sealed in a bin
+          and leaves sealed in the same bin. Spent trays and root mats go down with me in a bag and
+          out of the building; nothing accumulates on the roof.</p>
+        <p>The greens are cut at seven to ten days, long before anything flowers or seeds, so
+          there&rsquo;s nothing up there a pigeon or a rat is interested in. There&rsquo;s
+          essentially no noise either — no power tools, no machinery, no generator, nothing that
+          runs unattended. Harvesting is a person with scissors and a container. I clean the space
+          every time I&rsquo;m there, and if it ever looks worse than I found it, that&rsquo;s on
+          me: one text and I&rsquo;ll be there that day.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.09</span>What happens in the winter?</div>
+      <div class="qa-a skim">
+        <p>Straight answer: this is a summer project first. The warm months are a chance to prove
+          the model outdoors before spending money on indoor space and grow lights, which is what
+          winter production actually requires. I&rsquo;m not asking your building to fund that, and
+          I&rsquo;m not going to promise you a year-round operation I haven&rsquo;t earned yet.</p>
+        <p>If the season works, I&rsquo;d want to talk with you about what comes next — indoors,
+          another season, or both. If it doesn&rsquo;t, everything comes down and the roof goes back
+          exactly the way I found it.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q"><span class="mk">Q.10</span>What if it doesn&rsquo;t work — or you turn out to be a problem?</div>
+      <div class="qa-a skim">
+        <p>Then it ends. Put a 30-day termination clause in whatever we sign, no cause required, and
+          I&rsquo;ll sign it without arguing. Everything I bring up is freestanding and comes down in
+          a day, by hand. There&rsquo;s nothing to demolish, nothing to unbolt, and nothing to remove
+          but me.</p>
+        <p>That&rsquo;s the entire reason phase one uses trays and folding tables instead of
+          infrastructure. You&rsquo;re letting a stranger onto your roof — you should be able to
+          reverse that decision easily.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE ASK BAND #2 -->
+<div class="askband">
+  <div class="wrap">
+    <div class="askband-in">
+      <span class="tag">The ask</span>
+      <span class="line">If you can say yes to something like this — or you know who can —
+        that&rsquo;s the whole conversation. I&rsquo;m on 85th and I can come to you.</span>
+      <span class="num">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     THE TWO DRAWINGS — plan view, then the annotated tray.
+     Both hand-authored inline SVG. No photograph is annotated as though it
+     were Danny's own equipment; these are drawings, and they say so.
+     ====================================================================== -->
+<section class="wrap sec" id="drawings" aria-labelledby="dr-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="dr-h">Where it would go, and what it is</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.3em">
+        Two drawings rather than two more photographs, because the two things you actually need to
+        picture — a corner of your roof, and one tray — are things I can draw honestly and
+        can&rsquo;t yet photograph honestly. Both are generic. Neither is your building. The real
+        layout gets drawn on your roof, with your super or your roofer standing there.
+      </p>
+    </div>
+  </div>
+
+  <!-- ---------------------------------------------------------------
+       FIG. 04 — PLAN VIEW
+       --------------------------------------------------------------- -->
+  <figure style="margin-top:clamp(34px,4.5vw,60px)">
+    <div class="svgwrap">
+      <svg class="dwg" viewBox="0 0 1000 700" role="img" aria-labelledby="plan-t plan-d" preserveAspectRatio="xMidYMid meet">
+        <title id="plan-t">Plan drawing of a typical Upper West Side roof</title>
+        <desc id="plan-d">A rectangular roof seen from above, with a parapet, a stair bulkhead and roof hatch, a water tower, mechanical equipment and two roof drains. A twenty foot by twenty foot growing zone, hatched, sits in one corner, set back from the parapet, with a six foot clear path maintained across the roof. Six numbered callouts are keyed to the list below the drawing.</desc>
+
+        <defs>
+          <pattern id="cropHatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line class="hatch-g" x1="0" y1="0" x2="0" y2="14" stroke-width="2.4" opacity=".55"/>
+          </pattern>
+          <pattern id="mechHatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line class="hatch-k" x1="0" y1="0" x2="0" y2="10" stroke-width="1" opacity=".6"/>
+          </pattern>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="ink-f" d="M0,0 L10,5 L0,10 z"/>
+          </marker>
+        </defs>
+
+        <!-- parapet: outer and inner face -->
+        <g class="ink" stroke-width="1.6">
+          <rect x="40" y="60" width="880" height="500"/>
+          <rect x="58" y="78" width="844" height="464"/>
+        </g>
+
+        <!-- growing zone -->
+        <rect class="zone" x="100" y="118" width="240" height="240"/>
+
+        <!-- clear path corridor -->
+        <g class="ink" stroke-width="1.1" stroke-dasharray="9 7" opacity=".75">
+          <line x1="58" y1="400" x2="902" y2="400"/>
+          <line x1="58" y1="455" x2="902" y2="455"/>
+        </g>
+
+        <!-- bulkhead + mechanical -->
+        <rect class="mech" x="640" y="110" width="170" height="120"/>
+        <rect class="mech" x="640" y="470" width="170" height="55"/>
+
+        <!-- water tower -->
+        <g class="ink" stroke-width="1.6">
+          <circle cx="520" cy="180" r="48"/>
+          <circle cx="520" cy="180" r="36"/>
+          <line x1="472" y1="180" x2="568" y2="180"/>
+          <line x1="520" y1="132" x2="520" y2="228"/>
+        </g>
+
+        <!-- roof drains -->
+        <g class="ink" stroke-width="1.4">
+          <circle cx="130" cy="500" r="11"/><line x1="119" y1="500" x2="141" y2="500"/><line x1="130" y1="489" x2="130" y2="511"/>
+          <circle cx="520" cy="500" r="11"/><line x1="509" y1="500" x2="531" y2="500"/><line x1="520" y1="489" x2="520" y2="511"/>
+        </g>
+
+        <!-- dimension lines -->
+        <g class="ink" stroke-width="1" marker-start="url(#arw)" marker-end="url(#arw)">
+          <line x1="100" y1="100" x2="340" y2="100"/>
+          <line x1="366" y1="118" x2="366" y2="358"/>
+        </g>
+
+        <g class="t-ink" font-size="15" letter-spacing="1">
+          <text x="220" y="92" text-anchor="middle">20'&ndash;0"</text>
+          <text x="366" y="238" text-anchor="middle" transform="rotate(-90 366 238)">20'&ndash;0"</text>
+        </g>
+        <g class="t-gry" font-size="14" letter-spacing="1.4">
+          <text x="100" y="382">GROWING ZONE &mdash; APPROX. 400 SQ FT</text>
+          <text x="480" y="433" text-anchor="middle">6'&ndash;0" CLEAR PATH MAINTAINED</text>
+          <text x="725" y="252" text-anchor="middle">BULKHEAD &amp; ROOF HATCH</text>
+          <text x="520" y="250" text-anchor="middle">WATER TOWER</text>
+          <text x="725" y="546" text-anchor="middle">MECHANICAL</text>
+          <text x="130" y="530" text-anchor="middle">RD</text>
+          <text x="520" y="530" text-anchor="middle">RD</text>
+          <text x="480" y="72" text-anchor="middle">PARAPET</text>
+        </g>
+
+        <!-- keyed callouts -->
+        <g font-size="15" font-weight="500">
+          <circle class="disc" cx="145" cy="155" r="17"/><text class="t-grn" x="145" y="161" text-anchor="middle">01</text>
+          <circle class="disc" cx="288" cy="178" r="17"/><text class="t-grn" x="288" y="184" text-anchor="middle">02</text>
+          <circle class="disc" cx="480" cy="400" r="17"/><text class="t-grn" x="480" y="406" text-anchor="middle">03</text>
+          <circle class="disc" cx="79"  cy="250" r="17"/><text class="t-grn" x="79"  y="256" text-anchor="middle">04</text>
+          <circle class="disc" cx="725" cy="300" r="17"/><text class="t-grn" x="725" y="306" text-anchor="middle">05</text>
+          <circle class="disc" cx="170" cy="320" r="17"/><text class="t-grn" x="170" y="326" text-anchor="middle">06</text>
+        </g>
+
+        <!-- graphic scale bar -->
+        <g>
+          <rect class="ink-f" x="40"  y="600" width="40" height="12"/>
+          <rect class="ink"   x="80"  y="600" width="40" height="12" stroke-width="1.2"/>
+          <rect class="ink-f" x="120" y="600" width="40" height="12"/>
+          <rect class="ink"   x="160" y="600" width="40" height="12" stroke-width="1.2"/>
+          <g class="t-gry" font-size="13">
+            <text x="40" y="634">0</text>
+            <text x="120" y="634" text-anchor="middle">10</text>
+            <text x="200" y="634" text-anchor="middle">20 FT</text>
+          </g>
+        </g>
+
+        <!-- title block -->
+        <g>
+          <rect class="ink" x="560" y="586" width="400" height="86" stroke-width="1.4"/>
+          <line class="ink" x1="560" y1="614" x2="960" y2="614" stroke-width="1"/>
+          <text class="t-ink" x="574" y="606" font-size="13" letter-spacing="1.2">FIG. 04 &mdash; PROPOSED FOOTPRINT, TYPICAL</text>
+          <g class="t-gry" font-size="12" letter-spacing="1.2">
+            <text x="574" y="636">NOT TO SCALE &middot; GENERIC UWS ROOF</text>
+            <text x="574" y="658">FINAL LAYOUT SET WITH BUILDING ENGINEER</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <p class="scrollhint">&larr; Scroll to see the whole drawing &rarr;</p>
+    <figcaption>
+      <span class="plate">FIG. 04 &middot; <span class="ref">Drawing</span></span>
+      <p class="cap" style="max-width:60ch">Proposed footprint, typical — a generic prewar Upper
+        West Side roof, drawn to show where the growing zone sits and, more usefully, everything it
+        stays away from. Not your roof. Not to scale.</p>
+    </figcaption>
+    <ol class="keys">
+      <li>Trays flat on low folding tables. Nothing stacked, nothing tall enough for wind to catch.</li>
+      <li>Pads or pavers under every leg, so load is spread instead of pointed.</li>
+      <li>A six-foot clear walking path maintained across the roof at all times.</li>
+      <li>Set back from the parapet, never at the edge. Away from vents, seams and flashing.</li>
+      <li>Water hand-carried up the stairs. No plumbing, no hose, no connection to anything.</li>
+      <li>Zero roof penetrations. Nothing drilled, bolted, adhered or ballasted.</li>
+    </ol>
+    <p class="titleblock">Bulkhead, hatch, standpipe, drains and parapet edge are drawn first and
+      kept clear. If your building&rsquo;s required clearances make the usable corner smaller than
+      this, the corner gets smaller.</p>
+  </figure>
+
+  <!-- ---------------------------------------------------------------
+       FIG. 05 — THE ANNOTATED TRAY (signature moment)
+       Drawn rather than photographed on purpose: annotating a borrowed
+       photograph with "my tray, my table" would be a possessive caption on
+       an image that isn't Danny's. When he photographs his own tray
+       straight-on with clean margins, this drawing can be replaced by the
+       photograph with the same six leaders laid over it.
+       --------------------------------------------------------------- -->
+  <figure style="margin-top:clamp(56px,7vw,110px)">
+    <div class="grid">
+      <div class="c1-8">
+        <h3 class="sechead" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">One tray, in detail</h3>
+        <p class="standfirst" style="margin-top:1.1em">Six things a building manager asks about,
+          answered against the object rather than in a paragraph.</p>
+      </div>
+    </div>
+
+    <div class="svgwrap" style="margin-top:24px">
+      <svg class="dwg" viewBox="0 0 1000 700" role="img" aria-labelledby="tray-t tray-d" preserveAspectRatio="xMidYMid meet">
+        <title id="tray-t">Drawing of one ten by twenty inch growing tray on a folding table</title>
+        <desc id="tray-d">A single shallow rectangular tray full of microgreens, drawn at an angle, sitting on a folding table with rubber-footed legs standing on protective pads. Dimension lines mark the tray as ten inches by twenty inches. Six numbered callouts on hairline leader lines point to the tray edge, the solid tray wall, the growing medium, a pad under a table leg, the empty space beneath the table, and the canopy. The callouts are decoded in the list below.</desc>
+
+        <defs>
+          <pattern id="canopy" width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle class="dot-g" cx="3" cy="3" r="1.7" opacity=".55"/>
+            <circle class="dot-g" cx="9" cy="9" r="1.7" opacity=".38"/>
+          </pattern>
+          <marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path class="ink-f" d="M0,0 L10,5 L0,10 z"/>
+          </marker>
+        </defs>
+
+        <!-- Axonometric geometry. The tray's two top edges are deliberately in a
+             true 2:1 ratio (402 and 201 units) so the drawing reads ten-by-twenty
+             at a glance — that proportion is the whole point of the figure.
+             Tray top: A(410,190) B(770,370) C(590,460) D(230,280) -->
+
+        <!-- table legs -->
+        <g class="ink" stroke-width="1.6">
+          <polygon points="613,549 625,549 625,627 613,627"/>
+          <polygon points="138,312 150,312 150,390 138,390"/>
+          <polygon points="850,430 862,430 862,508 850,508"/>
+        </g>
+        <!-- pads under the feet -->
+        <g class="gry" stroke-width="1.4">
+          <polygon points="581,627 611,612 657,627 627,642"/>
+          <polygon points="106,390 136,375 182,390 152,405"/>
+          <polygon points="818,508 848,493 894,508 864,523"/>
+        </g>
+        <!-- table top -->
+        <g class="ink" stroke-width="1.8">
+          <polygon points="381,181 856,418 619,537 144,300"/>
+          <polyline points="144,300 144,312 619,549 856,430 856,418"/>
+          <line x1="619" y1="537" x2="619" y2="549"/>
+        </g>
+
+        <!-- tray body -->
+        <g class="ink" stroke-width="1.8">
+          <polyline points="230,280 230,314 590,494 770,404 770,370"/>
+          <line x1="590" y1="460" x2="590" y2="494"/>
+          <polygon points="410,190 770,370 590,460 230,280"/>
+        </g>
+        <!-- tray inner rim + canopy -->
+        <polygon class="canopy" points="416,200 751,367 584,451 249,283"/>
+
+        <!-- dimension lines: 20 in on the long edge, 10 in on the short -->
+        <g class="ink" stroke-width="1" marker-start="url(#arw2)" marker-end="url(#arw2)">
+          <line x1="429" y1="152" x2="789" y2="332"/>
+          <line x1="391" y1="152" x2="211" y2="242"/>
+        </g>
+        <g class="t-ink" font-size="15" letter-spacing="1">
+          <text x="609" y="236" text-anchor="middle" transform="rotate(26.57 609 236)">20 IN</text>
+          <text x="301" y="191" text-anchor="middle" transform="rotate(-26.57 301 191)">10 IN</text>
+        </g>
+
+        <!-- leader lines -->
+        <g class="lead">
+          <path d="M912,133 L706,283"/>
+          <path d="M912,309 L728,372"/>
+          <path d="M912,462 L700,420"/>
+          <path d="M88,202 L392,326"/>
+          <path d="M88,464 L132,396"/>
+          <path d="M362,645 L432,486"/>
+        </g>
+
+        <!-- callout numerals -->
+        <g font-size="15" font-weight="500">
+          <circle class="disc" cx="930" cy="120" r="18"/><text class="t-grn" x="930" y="126" text-anchor="middle">01</text>
+          <circle class="disc" cx="930" cy="470" r="18"/><text class="t-grn" x="930" y="476" text-anchor="middle">02</text>
+          <circle class="disc" cx="70"  cy="190" r="18"/><text class="t-grn" x="70"  y="196" text-anchor="middle">03</text>
+          <circle class="disc" cx="70"  cy="470" r="18"/><text class="t-grn" x="70"  y="476" text-anchor="middle">04</text>
+          <circle class="disc" cx="350" cy="655" r="18"/><text class="t-grn" x="350" y="661" text-anchor="middle">05</text>
+          <circle class="disc" cx="930" cy="300" r="18"/><text class="t-grn" x="930" y="306" text-anchor="middle">06</text>
+        </g>
+
+        <!-- title block -->
+        <g class="t-gry" font-size="12" letter-spacing="1.2">
+          <text x="40" y="60">FIG. 05 &mdash; ONE 10 &times; 20 TRAY ON ONE FOLDING TABLE</text>
+          <text x="40" y="80">DRAWN, NOT PHOTOGRAPHED &middot; TYPICAL</text>
+        </g>
+      </svg>
+    </div>
+    <p class="scrollhint">&larr; Scroll to see the whole drawing &rarr;</p>
+    <figcaption>
+      <span class="plate">FIG. 05 &middot; <span class="ref">Drawing</span></span>
+      <p class="cap" style="max-width:60ch">One tray on one folding table. Drawn rather than
+        photographed, because I don&rsquo;t yet own a photograph of my own setup that would tell you
+        anything true. When I do, it goes here and this drawing comes down.</p>
+    </figcaption>
+    <ol class="keys">
+      <li>10 &times; 20 inches. 1.4 square feet. Everything on this page scales from this one unit.</li>
+      <li>Solid-bottom tray, bottom-watered. The water goes in the tray and stays in the tray. Nothing drains onto your roof.</li>
+      <li>Growing medium comes up sealed and goes down sealed in the same bin. No open soil, no compost pile, ever.</li>
+      <li>Folding table on rubber feet over pads. Nothing drilled, bolted, adhered, or ballasted into your membrane.</li>
+      <li>No power, no plumbing, no pumps, no fans. Sun and a watering can.</li>
+      <li>Cut at day 7 to 10, before it flowers or seeds. There&rsquo;s nothing up here a pigeon or a rat wants.</li>
+    </ol>
+
+    <div class="grid" style="margin-top:clamp(26px,3vw,42px)">
+      <div class="c1-8">
+        <p class="pull">
+          I&rsquo;ll put the loaded weight per square foot in writing before a single tray goes up,
+          and I&rsquo;ll cap the total at whatever number your engineer or your roofer is comfortable
+          with. If that number is small, I bring fewer trays. I&rsquo;d rather start below your limit
+          than argue about it.
+        </p>
+      </div>
+    </div>
+  </figure>
+</section>
+
+<!-- ======================================================================
+     THE PHOTO ESSAY
+     ====================================================================== -->
+<section class="wrap sec" id="essay" aria-labelledby="essay-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="essay-h">What this actually looks like</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.3em">
+        No beds, no soil on your roof, no plumbing. Trays on a folding table, a jug of water, and a
+        pair of scissors. It&rsquo;s quiet, it&rsquo;s clean, it&rsquo;s about waist high, and in ten
+        days it&rsquo;s food.
+      </p>
+      <p class="prose">
+        Every photograph in this section is a licensed reference photograph taken by somebody else.
+        None of them is my roof or my tray, and each caption says which is which. That&rsquo;s a
+        worse page today and a page you can trust — and every one of them gets replaced the moment
+        phase one produces the real thing.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(34px,4.5vw,64px)">
+    <!-- FIG. 06 — REPLACE WITH: Danny's rack or table of trays, 6:30am. -->
+    <figure class="c1-7 photofig">
+      <div class="photo r-45">
+        <img src="https://images.unsplash.com/photo-1633133451255-5e7b18ba768a?w=1200&amp;h=1500&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1200" height="1500" loading="lazy" decoding="async"
+             alt="A wooden tray of dense green microgreens sitting on a wire shelving rack in a growing space.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 06 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Microgreens on a wire shelving rack, indoors. On a roof it&rsquo;s a folding
+          table instead of a rack — nothing stacked, nothing higher than waist height, so wind has
+          nothing to catch.</p>
+      </figcaption>
+    </figure>
+
+    <!-- FIG. 07 — REPLACE WITH: Danny's cut mat, root side visible. -->
+    <figure class="c8-12 photofig stagger">
+      <div class="photo r-11">
+        <img src="https://images.pexels.com/photos/17360198/pexels-photo-17360198.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             width="1600" height="1600" loading="lazy" decoding="async"
+             alt="A thick mat of cut microgreens resting on a wooden table against a dark green background.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 07 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">A mat of microgreens lifted out of its tray. The roots hold the mat together
+          in one piece — which is why the spent tray goes down the stairs in a bag rather than
+          becoming a pile on your roof.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- FIG. 08 — full bleed.
+     REPLACE WITH: Danny on an actual New York roof with a tray. Until then this
+     stays captioned as what it is: a rooftop in Amritsar, India. It is NOT New York. -->
+<figure class="bleed photofig">
+  <div class="photo r-169">
+    <img src="https://images.pexels.com/photos/14264888/pexels-photo-14264888.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+         width="1600" height="900" loading="lazy" decoding="async"
+         alt="A man in sportswear standing on a rooftop under shade cloth, holding a white tray of young seedlings, with city buildings behind him.">
+  </div>
+  <figcaption class="capwrap">
+    <span class="plate">FIG. 08 &middot; <span class="ref">Reference photograph &mdash; not New York</span></span>
+    <p class="cap">A grower on a rooftop holding a tray of seedlings, photographed in Amritsar,
+      India. It is the closest photograph I could find to what a working roof actually looks like:
+      one person, one tray, no infrastructure. Growing food above a street is ordinary in a lot of
+      the world. It&rsquo;s just rare here.</p>
+  </figcaption>
+</figure>
+
+<section class="wrap sec sec--tight">
+  <div class="grid">
+    <!-- FIG. 09 -->
+    <figure class="c2-6 photofig">
+      <div class="photo r-32">
+        <img src="https://images.pexels.com/photos/28125903/pexels-photo-28125903.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="A lush planted roof garden in New York with dense greenery in the foreground and the Midtown Manhattan skyline behind it.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 09 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">A planted roof garden in New York, Midtown behind it. This is what most
+          people picture when they hear &ldquo;rooftop farm&rdquo; — beds, soil, permanence, a
+          construction project. It is worth looking at precisely because it is <em>not</em> what
+          I&rsquo;m proposing.</p>
+      </figcaption>
+    </figure>
+
+    <!-- FIG. 10 — REPLACE WITH: Danny's own harvest, scissors and container. -->
+    <figure class="c7-12 photofig stagger">
+      <div class="photo r-32">
+        <img src="https://images.unsplash.com/photo-1624720115183-cf1692f21016?w=1600&amp;h=1067&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="Overhead view of a harvest crate holding cut lettuces and pea tendrils beside a pair of red-handled snips.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 10 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">A harvest crate and a pair of snips. That is the entire processing operation.
+          No machinery, nothing that runs unattended, nothing a resident on the top floor could
+          hear.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- FIG. 11 — full bleed band -->
+<figure class="bleed photofig">
+  <div class="photo r-41">
+    <img src="https://images.pexels.com/photos/12491938/pexels-photo-12491938.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+         width="1600" height="400" loading="lazy" decoding="async"
+         alt="A wide flat New York rooftop at dusk with wooden water towers in the middle distance and the Downtown Manhattan skyline on the horizon.">
+  </div>
+  <figcaption class="capwrap">
+    <span class="plate">FIG. 11 &middot; <span class="ref">Reference photograph</span></span>
+    <p class="cap">A Manhattan rooftop at dusk, water towers and the Downtown skyline behind it.
+      Flat, sunny, and empty. That is the whole observation this project is built on.</p>
+  </figcaption>
+</figure>
+
+<section class="wrap sec sec--tight">
+  <div class="grid">
+    <!-- FIG. 12 -->
+    <figure class="c1-6 photofig">
+      <div class="photo r-32">
+        <img src="https://images.unsplash.com/photo-1762216454185-71127f1d4a95?w=1600&amp;h=1067&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="A row of brownstone houses with ornate stoops and carved newel posts on an Upper West Side street.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 12 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Brownstone row houses, Upper West Side, Manhattan. I live on a block that
+          looks like this one. So do the people who&rsquo;d be buying the greens.</p>
+      </figcaption>
+    </figure>
+
+    <!-- FIG. 13 — small inset hanging into the right margin on desktop. -->
+    <figure class="c9-12 photofig stagger hang-right">
+      <div class="photo r-45">
+        <img src="https://images.unsplash.com/photo-1536630596251-b12ba0d9f7d4?w=1000&amp;h=1250&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1000" height="1250" loading="lazy" decoding="async"
+             alt="Radish microgreens with bright red stems and green seed leaves against a clean white background.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 13 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Radish microgreens at cutting size. Radish, pea, sunflower and broccoli are
+          the varieties I&rsquo;d start with.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================================================================
+     PLATE BAND — half ink plate, half full-colour photograph.
+     (The duotone from the original spec is deliberately not used: a
+     luminosity blend over a green fill under a scrim reliably muddies.)
+     ====================================================================== -->
+<section class="plateband" aria-label="Pull quote">
+  <div class="ink">
+    <p>Manhattan has an enormous amount of flat, sunny, unused space above it.</p>
+    <p class="attrib">Danny Dalton &middot; W 85th Street</p>
+  </div>
+  <div class="photo">
+    <img src="https://images.unsplash.com/photo-1558725176-c627537fd811?w=1600&amp;h=1200&amp;q=80&amp;fm=jpg&amp;fit=crop"
+         width="1600" height="1200" loading="lazy" decoding="async"
+         alt="Two wooden water towers silhouetted against a deep purple dusk sky above brick rooftops in New York.">
+  </div>
+</section>
+<div class="wrap" style="padding-top:11px">
+  <span class="plate">FIG. 14 &middot; <span class="ref">Reference photograph</span></span>
+  <p class="cap" style="max-width:56ch">Wooden water towers at dusk, New York. Every roofline in
+    this photograph is flat, and almost none of it is being used for anything.</p>
+</div>
+
+<!-- THE ASK BAND #3 — placed here because the stretch from the photo essay
+     through the cycle strip and the math is the longest run of the page and
+     the place a manager is most likely to be sold. -->
+<div class="askband">
+  <div class="wrap">
+    <div class="askband-in">
+      <span class="tag">The ask</span>
+      <span class="line">One of these roofs would do. If yours is flat, sunny and empty, that is
+        the entire qualification.</span>
+      <span class="num">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     THE CYCLE — the signature strip. One frame per stage, one tray wide.
+     HONESTY NOTE: these are four DIFFERENT reference photographs standing in
+     for one sequence, and the section says so out loud. The real version —
+     the same tray on day 0, day 4, day 8, and the cut — is four photographs
+     Danny can shoot on his own kitchen counter in one week, and it replaces
+     this strip frame for frame.
+     ====================================================================== -->
+<section class="wrap sec" id="cycle" aria-labelledby="cycle-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="cycle-h">Seven to ten days, in four frames</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="standfirst" style="margin-top:1.4em">Reference sequence &mdash; four photographs, not one tray</p>
+      <p class="prose" style="margin-top:.7em">
+        These are four different photographs standing in for one tray, not one tray photographed
+        four times. I&rsquo;m not going to build a fake time-lapse out of somebody else&rsquo;s
+        pictures. The real version — the same tray on day 0, day 4, day 8 and the cut — is four
+        photographs I can take on my own counter in a week, and it replaces this frame for frame.
+      </p>
+    </div>
+  </div>
+
+  <div class="cycle" style="margin-top:clamp(26px,3.4vw,44px)">
+    <div class="frame">
+      <p class="stamp">Day 0&ndash;3 &middot; Seeded, covered</p>
+      <div class="blankframe">
+        <span>No photograph.<br>This frame is mine<br>to shoot.</span>
+      </div>
+      <p class="cap">Seed goes down on the flat and the tray stays dark for three days. There is no
+        honest stock photograph of this, so there isn&rsquo;t one here.</p>
+    </div>
+
+    <div class="frame">
+      <p class="stamp">Day 4&ndash;6 &middot; Uncovered</p>
+      <div class="photo">
+        <img src="https://images.pexels.com/photos/8268850/pexels-photo-8268850.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Top-down view of a dense carpet of round arugula seed leaves.">
+      </div>
+      <p class="cap">Arugula cotyledons — the first pair of leaves, straightening up once the cover
+        comes off.</p>
+    </div>
+
+    <div class="frame">
+      <p class="stamp">Day 7&ndash;10 &middot; Cutting size</p>
+      <div class="photo">
+        <img src="https://images.unsplash.com/photo-1640671510956-8c8e1deb0dd9?w=1200&amp;h=1500&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Rows of pea shoots filling a growing tray, photographed close in with a shallow depth of field.">
+      </div>
+      <p class="cap">Pea shoots filling a tray. Cut here, before anything flowers or goes to seed.</p>
+    </div>
+
+    <div class="frame">
+      <p class="stamp">The cut</p>
+      <div class="photo">
+        <img src="https://images.pexels.com/photos/37316488/pexels-photo-37316488.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+             width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Two hands using scissors to cut leafy greens close to the base in a growing bed.">
+      </div>
+      <p class="cap">Two hands and a pair of scissors, straight into the container. Then the same
+        square foot starts again.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     THE MATH
+     ====================================================================== -->
+<section class="wrap sec" id="math" aria-labelledby="math-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="math-h">Why microgreens, and why now</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.3em">
+        Microgreens are the first true leaves of vegetables and herbs — sunflower, pea, radish,
+        broccoli, cilantro — harvested seven to ten days after seeding. They&rsquo;re cut young,
+        which is where the flavour and the nutrient density come from, and it&rsquo;s also why they
+        don&rsquo;t need deep soil, a long season, or much space.
+      </p>
+      <p class="prose">
+        There are two numbers on this page and you can check both of them yourself.
+      </p>
+    </div>
+  </div>
+
+  <div class="figures" style="margin-top:clamp(28px,3.6vw,48px)">
+    <div class="fig">
+      <span class="n">7&ndash;10</span>
+      <span class="u">Days, seed to cut</span>
+      <p>A full cycle. Not a season, not a quarter — a week and a half. A tray seeded on a Monday is
+        on somebody&rsquo;s plate the following week, and the same square foot of roof does it again
+        immediately. Most crops give you one or two harvests a summer.</p>
+    </div>
+    <div class="fig">
+      <span class="n">$7&ndash;$10</span>
+      <span class="u">Per 3&ndash;4 oz container, retail</span>
+      <p>What a container of microgreens costs at a grocery store on the Upper West Side right now.
+        Walk into any market on Broadway and look. That price exists because the greens were grown
+        far away, packed, trucked in, and handled by several businesses before they reached the
+        shelf — and because a lot of them don&rsquo;t survive the trip.</p>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(30px,4vw,52px)">
+    <div class="c1-7">
+      <p class="prose">
+        The whole idea is that almost all of that is distance. Growing on a roof on 85th Street and
+        selling to people who live on 85th Street takes the trucks, the warehouse and the shelf life
+        out of the equation. That&rsquo;s what makes it possible to sell better greens for less money
+        and still run a real business.<span class="endmark"></span>
+      </p>
+    </div>
+    <div class="c8-12">
+      <p class="standfirst" style="margin-bottom:.9em">What I&rsquo;m not going to show you</p>
+      <p class="cap" style="font-style:normal; font-size:16px; max-width:38ch; color:var(--press)">
+        A revenue projection. I haven&rsquo;t run a full season on a New York rooftop, and any
+        five-year number I put here would be a number I made up — and if you took a share of the
+        profits, you&rsquo;d rightly hold me to it. The point of this season is to find out what a
+        roof in this city actually produces: real yields, real heat, real wind, real customers,
+        before anybody makes claims about it.
+      </p>
+      <p class="cap" style="font-style:normal; font-size:16px; max-width:38ch; color:var(--press); margin-top:1em">
+        What I can tell you is that the math is quite good, that the cost to try it is low, and that
+        I&rsquo;m the one carrying that cost.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     WHAT I DON'T KNOW YET
+     ====================================================================== -->
+<section class="wrap sec sec--tight" id="unknown" aria-labelledby="unk-h">
+  <div class="grid">
+    <div class="c1-9">
+      <div class="honesty">
+        <p class="kicker">The limits of my own evidence</p>
+        <h2 class="sechead" id="unk-h" style="font-size:clamp(1.6rem,3vw,2.3rem); margin-top:.4em">What I don&rsquo;t know yet</h2>
+        <div class="skim" style="margin-top:1.1em; max-width:60ch">
+          <p>I haven&rsquo;t run a season on a New York rooftop. I don&rsquo;t know what August heat
+            and August wind do to a tray six storeys up, and I&rsquo;ll find that out on my own
+            money, not yours.</p>
+          <p>I don&rsquo;t have a certificate of insurance, because I don&rsquo;t have a roof.
+            I don&rsquo;t know what your management company requires of a vendor — tell me and
+            I&rsquo;ll match it.</p>
+          <p>I don&rsquo;t have sales figures, because I haven&rsquo;t sold anything yet. I
+            don&rsquo;t have a measured weight for a loaded tray on your roof, and I&rsquo;m not
+            going to publish a number I haven&rsquo;t put on a scale. I&rsquo;m not an engineer and
+            I won&rsquo;t give you a structural opinion about your building.</p>
+          <p>Every number on this page is either checkable in a store on Broadway or biological.
+            Everything else is an assumption, and I&rsquo;ve tried to say so where it is one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ASK BAND #4 -->
+<div class="askband">
+  <div class="wrap">
+    <div class="askband-in">
+      <span class="tag">The ask</span>
+      <span class="line">I&rsquo;m on 85th. I can be at your building today or tomorrow — lobby,
+        office, or roof, whichever is easiest.</span>
+      <span class="num">Call or text <a class="ph" href="tel:+10000000000">[PHONE]</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     PHASE ONE
+     ====================================================================== -->
+<section class="wrap sec" id="phase" aria-labelledby="ph-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="ph-h">The plan, such as it is</h2>
+      <hr class="secrule">
+    </div>
+    <div class="c1-7">
+      <p class="prose" style="margin-top:1.3em">
+        Six steps, in order, with the paperwork before the trays on purpose. The first real
+        commitment you make is a phone call. Everything after that has an exit.
+      </p>
+    </div>
+  </div>
+
+  <div class="ruled timeline" style="margin-top:clamp(28px,3.6vw,48px)">
+    <div class="row">
+      <div class="key">Now</div>
+      <div class="val">Growing, testing varieties, and dialling in the cycle at small scale.
+        I&rsquo;m also looking for the roof — which is what this page is for.</div>
+    </div>
+    <div class="row">
+      <div class="key">First conversation</div>
+      <div class="val">Fifteen minutes on the phone, or I come to your lobby. No commitment,
+        nothing to sign, and if you&rsquo;re not the person who can say yes, I&rsquo;d be grateful
+        if you&rsquo;d tell me who is.</div>
+    </div>
+    <div class="row">
+      <div class="key">The walk</div>
+      <div class="val">We walk the roof together, with your super or your roofer if you want them
+        there, and photograph its condition. If it&rsquo;s wrong for your building, we&rsquo;ll both
+        know in ten minutes and I&rsquo;ll stop taking your time.</div>
+    </div>
+    <div class="row">
+      <div class="key">Paperwork</div>
+      <div class="val">A written agreement: the deal structure you picked, the layout drawn inside
+        your required clearances, and the 30-day termination clause. The general liability policy is
+        bound and the certificate is in your management company&rsquo;s hands before anything goes
+        up.</div>
+    </div>
+    <div class="row">
+      <div class="key">Trays up</div>
+      <div class="val">Tables, trays, medium, water. About ten days later there&rsquo;s food, and the
+        first of it goes to the front desk.</div>
+    </div>
+    <div class="row">
+      <div class="key">Late fall</div>
+      <div class="val">We decide honestly whether it worked. If it did, I&rsquo;d want to talk about
+        next season and about indoor space for the winter. If it didn&rsquo;t, everything comes off
+        the roof in a day and it&rsquo;s exactly as I found it.</div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(30px,4vw,56px)">
+    <div class="c1-8">
+      <p class="big-serif">That&rsquo;s the whole thing. It&rsquo;s a season. It&rsquo;s reversible.
+        And it starts with one person saying yes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     WHO I AM
+     ====================================================================== -->
+<section class="wrap sec" id="who" aria-labelledby="who-h">
+  <div class="grid">
+    <div class="c1-9">
+      <h2 class="sechead" id="who-h">Who I am</h2>
+      <hr class="secrule">
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:clamp(28px,3.6vw,48px)">
+    <!-- FIG. 15 — REPLACE WITH: an environmental portrait of Danny on a roof or a
+         stoop on 85th, at eye level, in daylight. ~340px wide, plain rectangle,
+         author-photo energy. No stock photograph of a person is used here, ever:
+         a borrowed face on a page about one specific person is the one lie that
+         would sink the whole thing. -->
+    <figure class="c1-4 photofig" style="max-width:340px">
+      <div class="photo r-45">
+        <img src="https://images.unsplash.com/photo-1762216454185-4bca7b059d09?w=1000&amp;h=1250&amp;q=80&amp;fm=jpg&amp;fit=crop"
+             width="1000" height="1250" loading="lazy" decoding="async"
+             alt="A brownstone stoop with a potted plant beside the steps on an Upper West Side street.">
+      </div>
+      <figcaption>
+        <span class="plate">FIG. 15 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">A brownstone stoop, Upper West Side. Not my building — I&rsquo;m not putting
+          my address on a public page. The block is the point.</p>
+        <p class="label" style="margin-top:14px; border-top:1px solid var(--hairline); padding-top:10px">
+          Portrait &mdash; to come. Danny Dalton, W 85th St.</p>
+      </figcaption>
+    </figure>
+
+    <div class="c6-12">
+      <div class="prose">
+        <p>I&rsquo;m Danny Dalton. I live on West 85th Street, a few blocks from wherever your
+          building is. There is no company behind this and no one else on it — it&rsquo;s me, some
+          trays, and an idea about the roofs in this neighbourhood.</p>
+        <p>I&rsquo;ve been growing microgreens in my apartment, at small scale, long enough to know
+          how the crop behaves: what germinates evenly, what molds if you crowd it, what a tray
+          weighs when it&rsquo;s wet. The limit I hit wasn&rsquo;t knowledge. It was floor space and
+          sunlight. That&rsquo;s what a roof solves.</p>
+        <p>What I haven&rsquo;t done is run this commercially. I haven&rsquo;t sold at volume, I
+          don&rsquo;t have a customer list, and I&rsquo;m not going to pretend otherwise on a
+          website. I&rsquo;m not raising money and I&rsquo;m not going to tell you I&rsquo;ve done
+          this before. What I have is a clear idea, a season to prove it, and a real reason to do it
+          right: I live here, I&rsquo;d be selling to my own neighbours, and the first building that
+          says yes is the reference for every building after it. I can&rsquo;t afford to be anything
+          other than easy to deal with.</p>
+        <p>If you&rsquo;d rather meet me before you decide anything — that&rsquo;s the right
+          instinct, and it&rsquo;s exactly what I&rsquo;m asking for.<span class="endmark"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</article>
+
+<!-- ======================================================================
+     THE ASK — reversed block. No form: a static page can't process one, and
+     a broken form would destroy exactly the credibility this page runs on.
+     ====================================================================== -->
+<section class="reversed" id="talk" aria-labelledby="talk-h">
+  <div class="wrap" style="padding-block:clamp(64px,10vw,150px)">
+    <div class="grid">
+      <div class="c1-8">
+        <p class="kicker">The ask</p>
+        <h2 class="sechead" id="talk-h" style="margin-top:.3em; max-width:20ch">Let&rsquo;s talk this week.</h2>
+        <div class="prose" style="margin-top:1.5em; max-width:56ch">
+          <p>I&rsquo;m looking for the person in a building who actually has the authority — a
+            managing agent, an owner, or a board member who&rsquo;d champion it. If that&rsquo;s you
+            and any part of this is interesting, call me. I&rsquo;d like fifteen minutes on the
+            phone, or I&rsquo;ll come to you: I can be at your building today or tomorrow, and
+            I&rsquo;ll come to the lobby, the office, or the roof, whichever is easiest.</p>
+          <p>If you&rsquo;d rather just see it before you decide anything, that&rsquo;s fine too.
+            I&rsquo;ll bring trays with me so you can see exactly what would be going up there, and
+            you can hand me back a container of greens or hand me back nothing.</p>
+          <p>The season is the window. If it&rsquo;s a yes, or even a maybe, I&rsquo;d like to be
+            growing on your roof in the next few weeks.</p>
+        </div>
+
+        <div class="contact-lines">
+          <div><span class="k">Call / text</span> <a class="ph" href="tel:+10000000000">[PHONE]</a></div>
+          <div><span class="k">Email</span> <a class="ph" href="mailto:hello@example.com?subject=Rooftop%20%E2%80%94%20%5Bbuilding%20address%5D">[EMAIL]</a></div>
+          <div><span class="k">Who</span> Danny Dalton &middot; W 85th Street, Upper West Side</div>
+        </div>
+
+        <p class="small">I answer the phone. Email is fine too, but the phone is faster. And if
+          you&rsquo;re not the person who can say yes to this, I&rsquo;d be grateful if you&rsquo;d
+          tell me who is.</p>
+
+        <!-- Placeholder disclosure. This whole block is the reason the page exists,
+             so the two unknown fields are called out rather than quietly left blank. -->
+        <p class="small" style="opacity:.6">
+          <strong>Note for the build:</strong> <span class="ph">[PHONE]</span> and
+          <span class="ph">[EMAIL]</span> are placeholders. The real number and address go here
+          before this page goes anywhere — the entire proposal is a bet on Danny answering that
+          phone.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     COLOPHON
+     ====================================================================== -->
+<footer class="colophon">
+  <div class="wrap">
+    <div class="grid">
+      <div class="c1-9">
+        <p class="line">Salad to the People &mdash; a rooftop growing project on the Upper West Side
+          of Manhattan.</p>
+        <p class="note">
+          Every photograph on this page is a licensed reference photograph taken by somebody else.
+          None of them shows my roof, my trays, or my operation, and every caption says so. I
+          don&rsquo;t have a roof yet — that is what this page is for. As soon as phase one produces
+          real trays and a real roof, my own photographs replace all of these and the plates change
+          from &ldquo;reference&rdquo; to a street and a date. The two drawings are mine, they are
+          generic, and they are not your building.
+        </p>
+        <p class="note">
+          There are no customer quotes, partner logos, press mentions, awards, or team here, because
+          there are no customers, partners, press, awards, or team yet. When there are, they&rsquo;ll
+          appear here with names and dates attached.
+        </p>
+        <p class="line">Phase one &middot; Summer 2026 &middot; Last updated 2 August 2026 &middot;
+          One page, no tracking, hosted as static HTML.</p>
+        <button class="printlink" type="button" onclick="window.print()">[ Print this page for your board ]</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Persistent call affordance on mobile, live from scroll position zero. -->
+<div class="callbar">
+  <span class="who">Danny Dalton</span>
+  <a href="tel:+10000000000">Call or text <span class="ph">[PHONE]</span></a>
+</div>
+
+<style>
+/* composed rag: manual line break in the headline, desktop only */
+.lb{ display:inline }
+@media (min-width:900px){ .lb::before{ content:"\A"; white-space:pre } }
+/* who-I-am portrait column */
+@media (min-width:900px){ .c1-4{ grid-column:1/5 } }
+</style>
+
+</body>
+</html>
