@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Salad to the People — a rooftop proposal, Upper West Side</title>
 <meta name="description" content="Danny Dalton is looking for one Upper West Side rooftop to grow microgreens on this summer. Here is exactly what that would look like on your building.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 
 <!--
   DIRECTION C — ROOFTOP DISPATCH / "TEN BY TWENTY"
@@ -38,6 +38,7 @@
    1. TOKENS
    ========================================================================== */
 :root{
+  color-scheme: light;   /* light only — scrollbars and form UI must not go dark either */
   --newsprint:#F7F3E9;   /* page ground — warm cream, laid-paper stock. 16.8:1 under --press */
   --press:#14130F;       /* headlines, body, major rules — warm near-black, brown cast not blue */
   --graphite:#6B6555;    /* captions, credits, secondary — warm taupe. 5.2:1 on ground */
@@ -57,16 +58,11 @@
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
-    --newsprint:#16150F;
-    --press:#EDE8DA;
-    --graphite:#9C9686;
-    --hairline:#33322A;
-    --green:#63A776;
-    --halftone:#1E1D16;
-  }
-}
+/* No dark mode, on purpose. This page is a paper document — a proposal a manager
+   might print for a board — and it commits to one look: ink on warm stock. It
+   renders cream even when the reader's device is set to dark. The two dark bands
+   further down (the plate band and the closing ask) are deliberate ink blocks on
+   that cream ground, not a theme. */
 
 /* ==========================================================================
    2. RESET / BASE
@@ -492,9 +488,6 @@ figcaption{ padding-top:11px; max-width:46ch }
   padding:clamp(34px,6vw,80px);
   min-height:clamp(260px,34vw,460px);
 }
-@media (prefers-color-scheme:dark){
-  .plateband .ink{ background:var(--halftone); color:var(--press) }
-}
 .plateband .ink p{
   font-family:var(--display); font-size:clamp(1.5rem,3vw,2.5rem);
   line-height:1.14; letter-spacing:-.01em; max-width:22ch;
@@ -563,9 +556,6 @@ figcaption{ padding-top:11px; max-width:46ch }
    14. THE ASK — reversed block
    ========================================================================== */
 .reversed{ background:var(--press); color:var(--newsprint) }
-@media (prefers-color-scheme:dark){
-  .reversed{ background:var(--halftone); color:var(--press) }
-}
 .reversed .sechead,
 .reversed h2{ color:inherit }
 .reversed a{ color:inherit; text-decoration-color:var(--green); text-decoration-thickness:2px }
