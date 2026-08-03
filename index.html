@@ -344,6 +344,10 @@ figure{ margin:0 }
 .r-11 { aspect-ratio:1/1 }
 .r-45 { aspect-ratio:4/5 }
 .r-34 { aspect-ratio:3/4 }
+/* Uncropped: no fixed ratio, so the image keeps its own proportions and
+   object-fit has nothing to crop against. Used for the portrait. */
+.r-native{ aspect-ratio:auto }
+.r-native img{ height:auto; object-fit:fill }
 @media (max-width:900px){
   .r-41{ aspect-ratio:2/1 }
   .r-219{ aspect-ratio:16/9 }
@@ -693,8 +697,8 @@ figcaption{ padding-top:11px; max-width:46ch }
     <!-- Danny, at the top of the page. A manager reading a cold proposal wants to
          know who is asking before they read what is being asked. -->
     <figure class="c8-12 photofig opening-portrait">
-      <div class="photo r-34">
-        <picture><source type="image/webp" srcset="img/own-08-danny-shirt-600.webp 600w, img/own-08-danny-shirt-800.webp 800w" sizes="(max-width:900px) 46vw, 300px"><img src="img/own-08-danny-shirt-800.jpg" srcset="img/own-08-danny-shirt-600.jpg 600w, img/own-08-danny-shirt-800.jpg 800w" sizes="(max-width:900px) 46vw, 300px" width="800" height="1067" decoding="async" alt="Danny Dalton, smiling, outdoors in a checked shirt."></picture>
+      <div class="photo r-native">
+        <picture><source type="image/webp" srcset="img/own-09-danny-shirt-600.webp 600w, img/own-09-danny-shirt-920.webp 920w" sizes="(max-width:900px) 46vw, 300px"><img src="img/own-09-danny-shirt-920.jpg" srcset="img/own-09-danny-shirt-600.jpg 600w, img/own-09-danny-shirt-920.jpg 920w" sizes="(max-width:900px) 46vw, 300px" width="920" height="675" decoding="async" alt="Danny Dalton, smiling, outdoors in a checked shirt."></picture>
       </div>
       <figcaption class="capwrap">
         <span class="plate">DANNY DALTON &middot; <span class="own">My own photograph</span></span>
@@ -743,7 +747,7 @@ figcaption{ padding-top:11px; max-width:46ch }
       <div class="val">
         A flat monthly payment for the season, agreed before a single tray goes up. Predictable,
         and it doesn&rsquo;t depend on whether I succeed. Think a few hundred dollars a month, not
-        a few thousand — this is a folding table&rsquo;s worth of space. I&rsquo;ll bring a specific
+        a few thousand — this is one rack&rsquo;s worth of floor space. I&rsquo;ll bring a specific
         number to the call and I expect to be told if it&rsquo;s wrong.
       </div>
     </div>
@@ -836,7 +840,7 @@ figcaption{ padding-top:11px; max-width:46ch }
         tours, no events.</div>
     </div>
     <div class="row">
-      <div class="key">What comes up<span class="sub">Folding tables, shallow trays, a watering can, jugs of water</span></div>
+      <div class="key">What comes up<span class="sub">A freestanding rack, shallow trays, a watering can, jugs of water</span></div>
       <div class="val">Everything is freestanding and hand-carried. Nothing that runs unattended,
         nothing that needs an outlet.</div>
     </div>
@@ -865,7 +869,7 @@ figcaption{ padding-top:11px; max-width:46ch }
       <p class="prose" style="margin-top:1.3em">
         Most people hear &ldquo;rooftop garden&rdquo; and picture raised beds, soil, hoses and a
         construction project. It&rsquo;s a tray. It&rsquo;s ten inches by twenty, about an inch
-        deep, and it sits flat on a folding table. Everything else on this page is measured in
+        deep, and it sits flat on a rack shelf. Everything else on this page is measured in
         that one unit.<span class="endmark"></span>
       </p>
     </div>
@@ -1129,7 +1133,7 @@ figcaption{ padding-top:11px; max-width:46ch }
           I&rsquo;ll sign it without arguing. Everything I bring up is freestanding and comes down in
           a day, by hand. There&rsquo;s nothing to demolish, nothing to unbolt, and nothing to remove
           but me.</p>
-        <p>That&rsquo;s the entire reason phase one uses trays and folding tables instead of
+        <p>That&rsquo;s the entire reason phase one uses trays and racks instead of
           infrastructure. You&rsquo;re letting a stranger onto your roof — you should be able to
           reverse that decision easily.</p>
       </div>
@@ -1163,7 +1167,7 @@ figcaption{ padding-top:11px; max-width:46ch }
     </div>
     <div class="c1-7">
       <p class="prose" style="margin-top:1.3em">
-        No beds, no soil on your roof, no plumbing. Trays on a folding table, a jug of water, and a
+        No beds, no soil on your roof, no plumbing. Trays on a rack, a jug of water, and a
         pair of scissors. It&rsquo;s quiet, it&rsquo;s clean, it&rsquo;s about waist high, and in ten
         days it&rsquo;s food.
       </p>
@@ -1177,31 +1181,9 @@ figcaption{ padding-top:11px; max-width:46ch }
   </div>
 
   <div class="grid" style="margin-top:clamp(34px,4.5vw,64px)">
-    <!-- FIG. 06 — REPLACE WITH: Danny's rack or table of trays, 6:30am. -->
-    <figure class="c1-7 photofig">
-      <div class="photo r-45">
-        <picture><source type="image/webp" srcset="img/fig-04-tray-on-rack-600.webp 600w, img/fig-04-tray-on-rack-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 40px), 632px"><img src="img/fig-04-tray-on-rack-1200.jpg" srcset="img/fig-04-tray-on-rack-600.jpg 600w, img/fig-04-tray-on-rack-1200.jpg 1200w" sizes="(max-width:900px) calc(100vw - 40px), 632px" width="1200" height="1500" loading="lazy" decoding="async" alt="A wooden tray of dense green microgreens sitting on a wire shelving rack in a growing space."></picture>
-      </div>
-      <figcaption>
-        <span class="plate">FIG. 06 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">Microgreens on a wire shelving rack, indoors. On a roof it&rsquo;s a folding
-          table instead of a rack — nothing stacked, nothing higher than waist height, so wind has
-          nothing to catch.</p>
-      </figcaption>
-    </figure>
+    
 
-    <!-- FIG. 07 — REPLACE WITH: Danny's cut mat, root side visible. -->
-    <figure class="c8-12 photofig stagger">
-      <div class="photo r-11">
-        <picture><source type="image/webp" srcset="img/fig-05-microgreens-mat-800.webp 800w, img/fig-05-microgreens-mat-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 442px"><img src="img/fig-05-microgreens-mat-1600.jpg" srcset="img/fig-05-microgreens-mat-800.jpg 800w, img/fig-05-microgreens-mat-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 442px" width="1600" height="1600" loading="lazy" decoding="async" alt="A thick mat of cut microgreens resting on a wooden table against a dark green background."></picture>
-      </div>
-      <figcaption>
-        <span class="plate">FIG. 07 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">A mat of microgreens lifted out of its tray. The roots hold the mat together
-          in one piece — which is why the spent tray goes down the stairs in a bag rather than
-          becoming a pile on your roof.</p>
-      </figcaption>
-    </figure>
+    
   </div>
 </section>
 
@@ -1209,37 +1191,37 @@ figcaption{ padding-top:11px; max-width:46ch }
 
 <section class="wrap sec sec--tight">
   <div class="grid">
-    <!-- FIG. 09 -->
+    <!-- FIG. 04 -->
     <figure class="c2-6 photofig">
       <div class="photo r-32">
     <picture><source type="image/webp" srcset="img/own-04-roof-garden-nyc-600.webp 600w, img/own-04-roof-garden-nyc-800.webp 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-04-roof-garden-nyc-800.jpg" srcset="img/own-04-roof-garden-nyc-600.jpg 600w, img/own-04-roof-garden-nyc-800.jpg 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="800" height="533" loading="lazy" decoding="async" alt="A planted rooftop garden in Manhattan with a pergola, a skylight and mature container plantings, surrounded by prewar buildings."></picture>
   </div>
       <figcaption>
-        <span class="plate">FIG. 09 &middot; <span class="ref">Reference photograph</span></span>
+        <span class="plate">FIG. 04 &middot; <span class="ref">Reference photograph</span></span>
         <p class="cap">A planted roof garden in Manhattan. This is far more than I am proposing &mdash; no pergola, no beds, no structures. Mine is trays on racks in one corner, and it comes down in a day.</p>
       </figcaption>
     </figure>
 
-    <!-- FIG. 10 — REPLACE WITH: Danny's own harvest, scissors and container. -->
+    <!-- FIG. 05 — REPLACE WITH: Danny's own harvest, scissors and container. -->
     <figure class="c7-12 photofig stagger">
       <div class="photo r-32">
     <picture><source type="image/webp" srcset="img/own-05-trays-in-sun-600.webp 600w, img/own-05-trays-in-sun-800.webp 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-05-trays-in-sun-800.jpg" srcset="img/own-05-trays-in-sun-600.jpg 600w, img/own-05-trays-in-sun-800.jpg 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="800" height="533" loading="lazy" decoding="async" alt="Trays of microgreens on a bench in strong morning sunlight, with more trays out of focus behind."></picture>
   </div>
       <figcaption>
-        <span class="plate">FIG. 10 &middot; <span class="ref">Reference photograph</span></span>
+        <span class="plate">FIG. 05 &middot; <span class="ref">Reference photograph</span></span>
         <p class="cap">Trays in morning sun. Light and water is the whole input list &mdash; no power, no plumbing, nothing running unattended.</p>
       </figcaption>
     </figure>
   </div>
 </section>
 
-<!-- FIG. 11 — full bleed band -->
+<!-- FIG. 06 — full bleed band -->
 <figure class="bleed photofig">
   <div class="photo r-41">
     <picture><source type="image/webp" srcset="img/fig-09-rooftop-water-towers-800.webp 800w, img/fig-09-rooftop-water-towers-1600.webp 1600w" sizes="100vw"><img src="img/fig-09-rooftop-water-towers-1600.jpg" srcset="img/fig-09-rooftop-water-towers-800.jpg 800w, img/fig-09-rooftop-water-towers-1600.jpg 1600w" sizes="100vw" width="1600" height="400" loading="lazy" decoding="async" alt="A wide flat New York rooftop at dusk with wooden water towers in the middle distance and the Downtown Manhattan skyline on the horizon."></picture>
   </div>
   <figcaption class="capwrap">
-    <span class="plate">FIG. 11 &middot; <span class="ref">Reference photograph</span></span>
+    <span class="plate">FIG. 06 &middot; <span class="ref">Reference photograph</span></span>
     <p class="cap">A Manhattan rooftop at dusk, water towers and the Downtown skyline behind it.
       Flat, sunny, and empty. That is the whole observation this project is built on.</p>
   </figcaption>
@@ -1247,25 +1229,24 @@ figcaption{ padding-top:11px; max-width:46ch }
 
 <section class="wrap sec sec--tight">
   <div class="grid">
-    <!-- FIG. 12 -->
+    <!-- FIG. 07 -->
     <figure class="c1-6 photofig">
       <div class="photo r-32">
         <picture><source type="image/webp" srcset="img/fig-10-brownstones-uws-800.webp 800w, img/fig-10-brownstones-uws-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/fig-10-brownstones-uws-1600.jpg" srcset="img/fig-10-brownstones-uws-800.jpg 800w, img/fig-10-brownstones-uws-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="1600" height="1067" loading="lazy" decoding="async" alt="A row of brownstone houses with ornate stoops and carved newel posts on an Upper West Side street."></picture>
       </div>
       <figcaption>
-        <span class="plate">FIG. 12 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">Brownstone row houses, Upper West Side, Manhattan. I live on a block that
-          looks like this one. So do the people who&rsquo;d be buying the greens.</p>
+        <span class="plate">FIG. 07 &middot; <span class="ref">Reference photograph</span></span>
+        <p class="cap">Brownstone row houses, Upper West Side, Manhattan.</p>
       </figcaption>
     </figure>
 
-    <!-- FIG. 13 — small inset hanging into the right margin on desktop. -->
+    <!-- FIG. 08 — small inset hanging into the right margin on desktop. -->
     <figure class="c9-12 photofig stagger hang-right">
       <div class="photo r-45">
         <picture><source type="image/webp" srcset="img/fig-11-radish-microgreens-600.webp 600w, img/fig-11-radish-microgreens-1000.webp 1000w" sizes="(max-width:900px) calc(100vw - 40px), 403px"><img src="img/fig-11-radish-microgreens-1000.jpg" srcset="img/fig-11-radish-microgreens-600.jpg 600w, img/fig-11-radish-microgreens-1000.jpg 1000w" sizes="(max-width:900px) calc(100vw - 40px), 403px" width="1000" height="1250" loading="lazy" decoding="async" alt="Radish microgreens with bright red stems and green seed leaves against a clean white background."></picture>
       </div>
       <figcaption>
-        <span class="plate">FIG. 13 &middot; <span class="ref">Reference photograph</span></span>
+        <span class="plate">FIG. 08 &middot; <span class="ref">Reference photograph</span></span>
         <p class="cap">Radish microgreens at cutting size. Radish, pea, sunflower and broccoli are
           the varieties I&rsquo;d start with.</p>
       </figcaption>
@@ -1288,7 +1269,7 @@ figcaption{ padding-top:11px; max-width:46ch }
   </div>
 </section>
 <div class="wrap" style="padding-top:11px">
-  <span class="plate">FIG. 14 &middot; <span class="ref">Reference photograph</span></span>
+  <span class="plate">FIG. 09 &middot; <span class="ref">Reference photograph</span></span>
   <p class="cap" style="max-width:56ch">Wooden water towers at dusk, New York. Every roofline in
     this photograph is flat, and almost none of it is being used for anything.</p>
 </div>
@@ -1307,68 +1288,7 @@ figcaption{ padding-top:11px; max-width:46ch }
   </div>
 </div>
 
-<!-- ======================================================================
-     THE CYCLE — the signature strip. One frame per stage, one tray wide.
-     HONESTY NOTE: these are four DIFFERENT reference photographs standing in
-     for one sequence, and the section says so out loud. The real version —
-     the same tray on day 0, day 4, day 8, and the cut — is four photographs
-     Danny can shoot on his own kitchen counter in one week, and it replaces
-     this strip frame for frame.
-     ====================================================================== -->
-<section class="wrap sec" id="cycle" aria-labelledby="cycle-h">
-  <div class="grid">
-    <div class="c1-9">
-      <h2 class="sechead" id="cycle-h">Seven to ten days, in four frames</h2>
-      <hr class="secrule">
-    </div>
-    <div class="c1-7">
-      <p class="standfirst" style="margin-top:1.4em">Reference sequence &mdash; four photographs, not one tray</p>
-      <p class="prose" style="margin-top:.7em">
-        These are four different photographs standing in for one tray, not one tray photographed
-        four times. I&rsquo;m not going to build a fake time-lapse out of somebody else&rsquo;s
-        pictures. The real version — the same tray on day 0, day 4, day 8 and the cut — is four
-        photographs I can take on my own counter in a week, and it replaces this frame for frame.
-      </p>
-    </div>
-  </div>
 
-  <div class="cycle" style="margin-top:clamp(26px,3.4vw,44px)">
-    <div class="frame">
-      <p class="stamp">Day 0&ndash;3 &middot; Seeded, covered</p>
-      <div class="blankframe">
-        <span>No photograph.<br>This frame is mine<br>to shoot.</span>
-      </div>
-      <p class="cap">Seed goes down on the flat and the tray stays dark for three days. There is no
-        honest stock photograph of this, so there isn&rsquo;t one here.</p>
-    </div>
-
-    <div class="frame">
-      <p class="stamp">Day 4&ndash;6 &middot; Uncovered</p>
-      <div class="photo">
-        <picture><source type="image/webp" srcset="img/fig-13-arugula-carpet-600.webp 600w, img/fig-13-arugula-carpet-1200.webp 1200w" sizes="(max-width:900px) 140px, 240px"><img src="img/fig-13-arugula-carpet-1200.jpg" srcset="img/fig-13-arugula-carpet-600.jpg 600w, img/fig-13-arugula-carpet-1200.jpg 1200w" sizes="(max-width:900px) 140px, 240px" width="1200" height="1500" loading="lazy" decoding="async" alt="Top-down view of a dense carpet of round arugula seed leaves."></picture>
-      </div>
-      <p class="cap">Arugula cotyledons — the first pair of leaves, straightening up once the cover
-        comes off.</p>
-    </div>
-
-    <div class="frame">
-      <p class="stamp">Day 7&ndash;10 &middot; Cutting size</p>
-      <div class="photo">
-        <picture><source type="image/webp" srcset="img/fig-14-pea-shoots-tray-600.webp 600w, img/fig-14-pea-shoots-tray-1200.webp 1200w" sizes="(max-width:900px) 140px, 240px"><img src="img/fig-14-pea-shoots-tray-1200.jpg" srcset="img/fig-14-pea-shoots-tray-600.jpg 600w, img/fig-14-pea-shoots-tray-1200.jpg 1200w" sizes="(max-width:900px) 140px, 240px" width="1200" height="1500" loading="lazy" decoding="async" alt="Rows of pea shoots filling a growing tray, photographed close in with a shallow depth of field."></picture>
-      </div>
-      <p class="cap">Pea shoots filling a tray. Cut here, before anything flowers or goes to seed.</p>
-    </div>
-
-    <div class="frame">
-      <p class="stamp">The cut</p>
-      <div class="photo">
-        <picture><source type="image/webp" srcset="img/fig-15-hands-harvesting-600.webp 600w, img/fig-15-hands-harvesting-1200.webp 1200w" sizes="(max-width:900px) 140px, 240px"><img src="img/fig-15-hands-harvesting-1200.jpg" srcset="img/fig-15-hands-harvesting-600.jpg 600w, img/fig-15-hands-harvesting-1200.jpg 1200w" sizes="(max-width:900px) 140px, 240px" width="1200" height="1500" loading="lazy" decoding="async" alt="Two hands using scissors to cut leafy greens close to the base in a growing bed."></picture>
-      </div>
-      <p class="cap">Two hands and a pair of scissors, straight into the container. Then the same
-        square foot starts again.</p>
-    </div>
-  </div>
-</section>
 
 
 
