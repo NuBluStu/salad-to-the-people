@@ -126,6 +126,14 @@ a:hover{ text-decoration-thickness:2px }
   .c1-12{ grid-column:1/13 } .c5-12{ grid-column:5/13 } .c6-12{ grid-column:6/13 }
 }
 
+/* The portrait in the opening. Below 900px the grid collapses to one column, so
+   it would otherwise run full width and shove the ask below the fold — cap it and
+   let the deck breathe above it. */
+.opening-portrait{ align-self:end; max-width:300px }
+@media (max-width:899px){
+  .opening-portrait{ max-width:210px; margin-top:clamp(20px,4vw,32px) }
+}
+
 .prose{ max-width:var(--measure) }
 /* book setting: paragraphs after the first are indented, no blank-line gap */
 .prose p + p{ text-indent:1.4em }
@@ -348,6 +356,10 @@ figcaption{ padding-top:11px; max-width:46ch }
   padding-bottom:3px;
 }
 .plate .ref{ color:var(--graphite) }
+/* Photographs that actually are mine. Distinct from .ref on purpose — the
+   difference between a borrowed image and my own is the whole point of the
+   plate system, so it must be visible at a glance. */
+.plate .own{ color:var(--green); font-weight:500 }
 .cap{
   font-family:var(--serif); font-style:italic; font-size:14px; line-height:1.5;
   color:var(--graphite);
@@ -677,6 +689,18 @@ figcaption{ padding-top:11px; max-width:46ch }
         <span class="cta">Call or text — <a class="tel" href="tel:+18583827603">858 382 7603</a></span>
       </div>
     </div>
+
+    <!-- Danny, at the top of the page. A manager reading a cold proposal wants to
+         know who is asking before they read what is being asked. -->
+    <figure class="c8-12 photofig opening-portrait">
+      <div class="photo r-34">
+        <picture><source type="image/webp" srcset="img/own-06-danny-portrait-600.webp 600w, img/own-06-danny-portrait-800.webp 800w" sizes="(max-width:900px) 46vw, 300px"><img src="img/own-06-danny-portrait-800.jpg" srcset="img/own-06-danny-portrait-600.jpg 600w, img/own-06-danny-portrait-800.jpg 800w" sizes="(max-width:900px) 46vw, 300px" width="800" height="1067" decoding="async" alt="Danny Dalton, smiling, outdoors."></picture>
+      </div>
+      <figcaption class="capwrap">
+        <span class="plate">DANNY DALTON &middot; <span class="own">My own photograph</span></span>
+        <p class="cap">Danny Dalton. W 85th Street.</p>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -685,13 +709,12 @@ figcaption{ padding-top:11px; max-width:46ch }
      parapet in the foreground, water tower, empty tar. The point of the opening
      image is emptiness. Plate token then changes REFERENCE -> W 85TH ST. -->
 <figure class="bleed photofig">
-  <div class="photo r-219">
-    <picture><source type="image/webp" srcset="img/fig-01-rooftops-manhattan-1000.webp 1000w, img/fig-01-rooftops-manhattan-2000.webp 2000w" sizes="100vw"><img src="img/fig-01-rooftops-manhattan-2000.jpg" srcset="img/fig-01-rooftops-manhattan-1000.jpg 1000w, img/fig-01-rooftops-manhattan-2000.jpg 2000w" sizes="100vw" width="2000" height="857" decoding="async" fetchpriority="high" alt="A dense field of Manhattan rooftops: flat tar roofs, stair bulkheads and wooden water towers under a heavy sky."></picture>
+  <div class="photo r-169">
+    <picture><source type="image/webp" srcset="img/own-01-uws-rooftops-1200.webp 1200w, img/own-01-uws-rooftops-1600.webp 1600w" sizes="100vw"><img src="img/own-01-uws-rooftops-1600.jpg" srcset="img/own-01-uws-rooftops-1200.jpg 1200w, img/own-01-uws-rooftops-1600.jpg 1600w" sizes="100vw" width="1600" height="900" decoding="async" fetchpriority="high" alt="Upper West Side rooftops seen from above: brownstone and prewar facades, flat roofs, bulkheads and street trees."></picture>
   </div>
   <figcaption class="capwrap">
     <span class="plate">FIG. 01 &middot; <span class="ref">Reference photograph</span></span>
-    <p class="cap">Manhattan rooftops — tar, bulkheads and wooden water towers. New York, N.Y.
-      This is not my roof. I don&rsquo;t have one yet, which is the entire reason for this page.</p>
+    <p class="cap">Upper West Side rooftops, seen from above. Flat, sunny, and doing nothing. Not my building &mdash; I don&rsquo;t have a roof yet.</p>
   </figcaption>
 </figure>
 
@@ -852,25 +875,22 @@ figcaption{ padding-top:11px; max-width:46ch }
     <!-- FIG. 02 — REPLACE WITH DANNY'S OWN overhead tray on his counter. -->
     <figure class="c1-6 photofig">
       <div class="photo r-32">
-        <picture><source type="image/webp" srcset="img/fig-02-tray-pea-shoots-800.webp 800w, img/fig-02-tray-pea-shoots-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/fig-02-tray-pea-shoots-1600.jpg" srcset="img/fig-02-tray-pea-shoots-800.jpg 800w, img/fig-02-tray-pea-shoots-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="1600" height="1067" loading="lazy" decoding="async" alt="Overhead view of a black growing tray packed edge to edge with dense green pea-shoot microgreens."></picture>
-      </div>
+    <picture><source type="image/webp" srcset="img/own-02-tray-rows-525.webp 525w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-02-tray-rows-525.jpg" srcset="img/own-02-tray-rows-525.jpg 525w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="525" height="350" loading="lazy" decoding="async" alt="Rows of microgreen trays side by side, purple and green varieties at cutting size."></picture>
+  </div>
       <figcaption>
         <span class="plate">FIG. 02 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">Pea shoots in a standard 10&nbsp;&times;&nbsp;20 tray, seen from overhead.
-          That tray is the unit: ten inches by twenty, 1.4 square feet, about an inch of growing
-          medium. Every photograph on this page is one, two or four trays wide.</p>
+        <p class="cap">Trays side by side at cutting size. Several varieties in one run &mdash; that is what a week of production looks like.</p>
       </figcaption>
     </figure>
 
     <!-- FIG. 03 — REPLACE WITH DANNY'S OWN day-8 canopy shot at tray level. -->
     <figure class="c7-12 photofig stagger">
       <div class="photo r-32">
-        <picture><source type="image/webp" srcset="img/fig-03-sunflower-macro-800.webp 800w, img/fig-03-sunflower-macro-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/fig-03-sunflower-macro-1600.jpg" srcset="img/fig-03-sunflower-macro-800.jpg 800w, img/fig-03-sunflower-macro-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="1600" height="1067" loading="lazy" decoding="async" alt="Macro photograph of sunflower microgreens filling the frame, thick pale stems under broad green seed leaves."></picture>
-      </div>
+    <picture><source type="image/webp" srcset="img/own-03-varieties-525.webp 525w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-03-varieties-525.jpg" srcset="img/own-03-varieties-525.jpg 525w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="525" height="350" loading="lazy" decoding="async" alt="Close view of adjacent growing trays holding different microgreen varieties, one red, one green, one just germinating."></picture>
+  </div>
       <figcaption>
         <span class="plate">FIG. 03 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">Sunflower shoots at cutting size — seven to ten days from seed. Then the same
-          square foot of roof does it again.</p>
+        <p class="cap">Adjacent trays at different stages. The one on the right was seeded days after the others &mdash; that stagger is what makes a steady weekly harvest.</p>
       </figcaption>
     </figure>
   </div>
@@ -1192,27 +1212,22 @@ figcaption{ padding-top:11px; max-width:46ch }
     <!-- FIG. 09 -->
     <figure class="c2-6 photofig">
       <div class="photo r-32">
-        <picture><source type="image/webp" srcset="img/fig-07-rooftop-garden-nyc-800.webp 800w, img/fig-07-rooftop-garden-nyc-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 442px"><img src="img/fig-07-rooftop-garden-nyc-1600.jpg" srcset="img/fig-07-rooftop-garden-nyc-800.jpg 800w, img/fig-07-rooftop-garden-nyc-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 442px" width="1600" height="1067" loading="lazy" decoding="async" alt="A lush planted roof garden in New York with dense greenery in the foreground and the Midtown Manhattan skyline behind it."></picture>
-      </div>
+    <picture><source type="image/webp" srcset="img/own-04-roof-garden-nyc-600.webp 600w, img/own-04-roof-garden-nyc-800.webp 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-04-roof-garden-nyc-800.jpg" srcset="img/own-04-roof-garden-nyc-600.jpg 600w, img/own-04-roof-garden-nyc-800.jpg 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="800" height="533" loading="lazy" decoding="async" alt="A planted rooftop garden in Manhattan with a pergola, a skylight and mature container plantings, surrounded by prewar buildings."></picture>
+  </div>
       <figcaption>
         <span class="plate">FIG. 09 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">A planted roof garden in New York, Midtown behind it. This is what most
-          people picture when they hear &ldquo;rooftop farm&rdquo; — beds, soil, permanence, a
-          construction project. It is worth looking at precisely because it is <em>not</em> what
-          I&rsquo;m proposing.</p>
+        <p class="cap">A planted roof garden in Manhattan. This is far more than I am proposing &mdash; no pergola, no beds, no structures. Mine is trays on racks in one corner, and it comes down in a day.</p>
       </figcaption>
     </figure>
 
     <!-- FIG. 10 — REPLACE WITH: Danny's own harvest, scissors and container. -->
     <figure class="c7-12 photofig stagger">
       <div class="photo r-32">
-        <picture><source type="image/webp" srcset="img/fig-08-harvest-crate-800.webp 800w, img/fig-08-harvest-crate-1600.webp 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/fig-08-harvest-crate-1600.jpg" srcset="img/fig-08-harvest-crate-800.jpg 800w, img/fig-08-harvest-crate-1600.jpg 1600w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="1600" height="1067" loading="lazy" decoding="async" alt="Overhead view of a harvest crate holding cut lettuces and pea tendrils beside a pair of red-handled snips."></picture>
-      </div>
+    <picture><source type="image/webp" srcset="img/own-05-trays-in-sun-600.webp 600w, img/own-05-trays-in-sun-800.webp 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px"><img src="img/own-05-trays-in-sun-800.jpg" srcset="img/own-05-trays-in-sun-600.jpg 600w, img/own-05-trays-in-sun-800.jpg 800w" sizes="(max-width:900px) calc(100vw - 40px), 537px" width="800" height="533" loading="lazy" decoding="async" alt="Trays of microgreens on a bench in strong morning sunlight, with more trays out of focus behind."></picture>
+  </div>
       <figcaption>
         <span class="plate">FIG. 10 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">A harvest crate and a pair of snips. That is the entire processing operation.
-          No machinery, nothing that runs unattended, nothing a resident on the top floor could
-          hear.</p>
+        <p class="cap">Trays in morning sun. Light and water is the whole input list &mdash; no power, no plumbing, nothing running unattended.</p>
       </figcaption>
     </figure>
   </div>
@@ -1477,14 +1492,13 @@ figcaption{ padding-top:11px; max-width:46ch }
          author-photo energy. No stock photograph of a person is used here, ever:
          a borrowed face on a page about one specific person is the one lie that
          would sink the whole thing. -->
-    <figure class="c1-4 photofig" style="max-width:340px">
-      <div class="photo r-45">
-        <picture><source type="image/webp" srcset="img/fig-16-brownstone-stoop-uws-600.webp 600w, img/fig-16-brownstone-stoop-uws-1000.webp 1000w" sizes="(max-width:900px) calc(100vw - 40px), 340px"><img src="img/fig-16-brownstone-stoop-uws-1000.jpg" srcset="img/fig-16-brownstone-stoop-uws-600.jpg 600w, img/fig-16-brownstone-stoop-uws-1000.jpg 1000w" sizes="(max-width:900px) calc(100vw - 40px), 340px" width="1000" height="1250" loading="lazy" decoding="async" alt="A brownstone stoop with a potted plant beside the steps on an Upper West Side street."></picture>
+    <figure class="c1-6 photofig" style="max-width:420px">
+      <div class="photo r-32">
+        <picture><source type="image/webp" srcset="img/own-07-danny-candid-600.webp 600w, img/own-07-danny-candid-800.webp 800w" sizes="(max-width:900px) calc(100vw - 40px), 420px"><img src="img/own-07-danny-candid-800.jpg" srcset="img/own-07-danny-candid-600.jpg 600w, img/own-07-danny-candid-800.jpg 800w" sizes="(max-width:900px) calc(100vw - 40px), 420px" width="800" height="533" loading="lazy" decoding="async" alt="Danny Dalton, smiling, outdoors."></picture>
       </div>
       <figcaption>
-        <span class="plate">FIG. 15 &middot; <span class="ref">Reference photograph</span></span>
-        <p class="cap">A brownstone stoop, Upper West Side. Not my building — I&rsquo;m not putting
-          my address on a public page. The block is the point.</p>
+        <span class="plate">DANNY DALTON &middot; <span class="own">My own photograph</span></span>
+        <p class="cap">Me. I live on W 85th Street and I answer my own phone.</p>
         <p class="label" style="margin-top:14px; border-top:1px solid var(--hairline); padding-top:10px">
           Portrait &mdash; to come. Danny Dalton, W 85th St.</p>
       </figcaption>
