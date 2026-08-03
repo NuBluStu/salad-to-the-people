@@ -133,6 +133,13 @@ a:hover{ text-decoration-thickness:2px }
 @media (max-width:899px){
   .opening-portrait{ max-width:210px; margin-top:clamp(20px,4vw,32px) }
 }
+/* Closing portrait — same photograph, bottom of the page. Sits with the contact
+   details rather than the headline, so it aligns to the end of the column. */
+.closing-portrait{ align-self:end; max-width:300px }
+@media (max-width:899px){
+  .closing-portrait{ max-width:240px; margin-top:clamp(28px,5vw,44px) }
+}
+.closing-portrait .cap{ color:var(--hairline) }
 
 .prose{ max-width:var(--measure) }
 /* book setting: paragraphs after the first are indented, no blank-line gap */
@@ -556,9 +563,14 @@ figcaption{ padding-top:11px; max-width:46ch }
 .reversed .sechead,
 .reversed h2{ color:inherit }
 .reversed a{ color:inherit; text-decoration-color:var(--green); text-decoration-thickness:2px }
-.reversed .tel{ color:var(--green); border-color:var(--green) }
+/* On the dark closing block the light-mode green is only 2.9:1 — too low for the
+   one element the whole page is asking the reader to use. Lift it to 6.2:1. */
+.reversed{ --green-on-dark:#5FA372 }
+.reversed .tel{ color:var(--green-on-dark); border-color:var(--green-on-dark) }
 .reversed a.tel:hover,
-.reversed a.tel:focus-visible{ background:var(--green); color:var(--press) }
+.reversed a.tel:focus-visible{ background:var(--green-on-dark); color:var(--press) }
+.reversed .plate{ color:var(--green-on-dark) }
+.reversed .plate .own{ color:var(--green-on-dark) }
 .contact-lines{
   font-family:var(--mono); font-weight:500;
   font-size:clamp(1.05rem,2.4vw,1.4rem); line-height:2.1; letter-spacing:.01em;
@@ -696,7 +708,7 @@ figcaption{ padding-top:11px; max-width:46ch }
   </div>
   <figcaption class="capwrap">
     <span class="plate">FIG. 01 &middot; <span class="ref">Reference photograph</span></span>
-    <p class="cap">Upper West Side rooftops, seen from above. Flat, sunny, and doing nothing. Not my building &mdash; I don&rsquo;t have a roof yet.</p>
+    <p class="cap">New York is beautiful. Stock photography. Flat, sunny, and doing nothing. Not my building &mdash; I don&rsquo;t have a roof yet.</p>
   </figcaption>
 </figure>
 
@@ -1446,6 +1458,18 @@ figcaption{ padding-top:11px; max-width:46ch }
           tell me who is.</p>
 
       </div>
+
+      <!-- Same photograph as the opening. The page begins and ends on the face of
+           the person doing the asking. -->
+      <figure class="c9-12 photofig closing-portrait">
+        <div class="photo r-native">
+          <picture><source type="image/webp" srcset="img/own-09-danny-shirt-600.webp 600w, img/own-09-danny-shirt-920.webp 920w" sizes="(max-width:900px) 60vw, 300px"><img src="img/own-09-danny-shirt-920.jpg" srcset="img/own-09-danny-shirt-600.jpg 600w, img/own-09-danny-shirt-920.jpg 920w" sizes="(max-width:900px) 60vw, 300px" width="920" height="675" loading="lazy" decoding="async" alt="Danny Dalton, smiling, outdoors in a checked shirt."></picture>
+        </div>
+        <figcaption class="capwrap">
+          <span class="plate">DANNY DALTON &middot; <span class="own">My own photograph</span></span>
+          <p class="cap">Danny Dalton. W 85th Street. Call me.</p>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
