@@ -17,7 +17,7 @@ stripped of EXIF metadata.
 
 ## Client-supplied images — PROVENANCE NOT ESTABLISHED
 
-Seven images were supplied directly by Danny (`own-01` … `own-07`) and are **not**
+Six images were supplied directly by Danny (`own-01` … `own-08`) and are **not**
 from Unsplash or Pexels. They are not covered by the license analysis below.
 
 | File | What it is | Provenance |
@@ -27,8 +27,7 @@ from Unsplash or Pexels. They are not covered by the license analysis below.
 | own-03-varieties | Adjacent trays, several varieties | **Unknown — supplied by client.** Appears to be stock. |
 | own-04-roof-garden-nyc | Planted Manhattan roof garden | **Unknown — supplied by client.** Appears to be a published editorial photograph. |
 | own-05-trays-in-sun | Trays in sunlight | **Unknown — supplied by client.** Appears to be AI-generated. |
-| own-06-danny-portrait | Danny, portrait | Danny's own. |
-| own-07-danny-candid | Danny, candid | Danny's own. |
+| own-08-danny-shirt | Danny, portrait (opening) | Danny's own. |
 
 **Action required.** `own-01` through `own-05` need their source and license
 confirmed before this site stays up as a commercial page. If any of them is a
@@ -36,15 +35,15 @@ listing photo, an editorial photo, or otherwise someone else's copyrighted work,
 it needs to be licensed or replaced. This file cannot record provenance that was
 never supplied, and "found online" is not a license.
 
-The two portraits of Danny are the only images on the site captioned as his own.
-All five of the above are captioned as reference photographs and make no
+The portrait of Danny is the only image on the site captioned as his own.
+The other five are captioned as reference photographs and make no
 ownership claim, which keeps the page truthful — but truthful captioning is not
 the same as having the right to publish an image.
 
 ## Honesty rule — read before changing any caption
 
 **No photograph here shows Danny Dalton's roof, his trays, or his operation**,
-apart from the two portraits of Danny himself. He does not have a roof yet;
+apart from the portrait of Danny himself. He does not have a roof yet;
 finding one is what the site is for.
 
 Every other image is therefore captioned `REFERENCE` on the page, and no caption
@@ -55,7 +54,7 @@ are true are the argument.
 
 When Danny has real photographs of the growing operation, replace the file in
 `/img/` and change the plate token from `REFERENCE` to `W 85TH ST`. Both changes
-must happen together. The two portraits already use a `My own photograph` plate,
+must happen together. The portrait already uses a `My own photograph` plate,
 which is the pattern to follow.
 
 Removed for being not-New-York and captioned as such:
